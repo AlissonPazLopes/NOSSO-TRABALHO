@@ -11,6 +11,7 @@ public class Model {
     private Usuario usuarioAutenticado;
 
     private HashMap<String, Ped> peds = new HashMap<>();
+    private HashMap<String, Ped> pedsSolicitados = new HashMap<>();
     private HashMap<String, Usuario> usuarios = new HashMap<>();
     private ArrayList<Observer> observers = new ArrayList<>();
 
@@ -66,9 +67,16 @@ public class Model {
      *metodos envolvendo ped
      */
 
-    public void addPed(Ped ped) {
-        if(ped != null && ped.getCodigo() != null) {
-            peds.put(ped.getCodigo(), ped);
+    public void addSolicitacaoPed(Ped ped) {
+        Professor professor = (Professor) usuarioAutenticado; //so pode ser usado por professores
+        if(professor.getDisciplina(ped.getDisciplina().getCodigo()) == null) return; //encerra se o professor e ped nao forem da mesma disciplina
+        pedsSolicitados.put(ped.getCodigo(), ped);
+        notifica();
+    }
+
+    public void addPed(String codigo) {
+        if(pedsSolicitados.containsKey(codigo)) {
+            peds.put(codigo, pedsSolicitados.get(codigo));
             notifica();
         }
     }

@@ -1,11 +1,15 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Ped {
-    private String codigo; //private Identificacao identificacao ??? (para armazenar unidade/cursos/codigo/nome/carater etc etc...)
+    private String codigo;
+    //private Identificacao identificacao ??? (para armazenar unidade/cursos/codigo/nome/carater etc etc...)
+    private Disciplina disciplina;
     private String justificativa;
     private String ementa;
     private String objetivos;
-    //private Calendario calendario ???
+    private ArrayList<Atividade> calendario = new ArrayList<>();
     private String metodologia;
     private String atividadesDiscentes;
     private String sistemaAvaliacao;
@@ -16,12 +20,18 @@ public class Ped {
         if(codigo == null) return;
         Ped ped = Model.getInstancia().getPed(codigo);
         if(ped != null) return;
-        this.codigo = codigo;
+        this.codigo = codigo.toUpperCase();
     }
 
     public String getCodigo() {
         return codigo;
     }
+
+    public void setDisciplina(Disciplina disciplina) {
+        if(disciplina.getNome() != null && disciplina.getCodigo() != null) this.disciplina = disciplina;
+    }
+
+    public Disciplina getDisciplina() {return disciplina;}
 
     public void setJustificativa(String justificativa) {
         if(justificativa != null) {
