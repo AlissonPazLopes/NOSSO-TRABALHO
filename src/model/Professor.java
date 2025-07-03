@@ -5,10 +5,12 @@ import java.util.HashMap;
 public class Professor extends Usuario {
     private HashMap<String, Disciplina> disciplinas = new HashMap<>();
 
-    public Professor(String nome, String login, String senha, Disciplina disciplina) {
+    public Professor(String nome, String login, String senha, Disciplina disciplinas[]) {
         super(nome, login, senha);
-        disciplinas.put(disciplina.getCodigo(), disciplina);
+        for(int i = 0; i < disciplinas.length; i++) {setDisciplina(disciplinas[i]);}
     }
+
+    public void setDisciplina(Disciplina disciplina) {disciplinas.put(disciplina.getCodigo(), disciplina);}
 
     public Disciplina getDisciplina(String codigo) {return disciplinas.get(codigo);}
 }
