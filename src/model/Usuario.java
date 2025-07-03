@@ -25,9 +25,10 @@ public abstract class Usuario {
     }
 
     public void setLogin(String login) {
-        if(login != null) {
-            this.login = login;
-        }
+        if(login == null) return;
+        Usuario usuario = Model.getInstancia().getUsuario(login);
+        if(usuario != null) return;
+        this.login = login;
     }
 
     public String getLogin() {
