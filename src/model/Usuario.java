@@ -45,4 +45,10 @@ public abstract class Usuario {
     public String getSenha() {
         return senha;
     }
+
+    public boolean isCompleto() {
+        if(nome != null && login != null && senha != null) return true;
+        return false;
+    }
+
 }
