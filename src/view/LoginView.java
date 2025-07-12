@@ -29,6 +29,7 @@ public class LoginView implements Observer {
         System.out.print("Digite sua senha: ");
         senha = sc.nextLine();
         controller.handleEvent("OK");
+
         model.detachObserver(this);
     }
 

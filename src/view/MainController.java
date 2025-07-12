@@ -25,7 +25,7 @@ public class MainController implements Observer {
                 break;
             case "2":
                 RegisterView viewR = new RegisterView();
-                //viewR.init(model);
+                viewR.init(model);
                 break;
             case "3":
                 view.finalizarSistema();

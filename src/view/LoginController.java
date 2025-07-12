@@ -1,7 +1,6 @@
 package view;
 
 import model.Model;
-import model.Usuario;
 
 public class LoginController implements Observer{
     private Model model;

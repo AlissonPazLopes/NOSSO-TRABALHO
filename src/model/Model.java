@@ -31,7 +31,14 @@ public class Model {
      * metodos envolvendo usuario
      */
 
-    public void addUsuario(Usuario usuario) {
+    /*public void addUsuario(Usuario usuario) {
+        if (usuario != null && usuario.getLogin() != null) {
+            usuarios.put(usuario.getLogin(), usuario);
+            notifica();
+        }
+    }*/
+
+    public void setUsuario(Usuario usuario) {
         if (usuario != null && usuario.getLogin() != null) {
             usuarios.put(usuario.getLogin(), usuario);
             notifica();

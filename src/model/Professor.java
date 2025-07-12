@@ -1,13 +1,14 @@
 package model;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Professor extends Usuario {
     private HashMap<String, Disciplina> disciplinas = new HashMap<>();
 
-    public Professor(String nome, String login, String senha, Disciplina disciplinas[]) {
+    public Professor(String nome, String login, String senha, ArrayList<Disciplina> disciplinas) {
         super(nome, login, senha);
-        for(int i = 0; i < disciplinas.length; i++) {setDisciplina(disciplinas[i]);}
+        for(Disciplina d : disciplinas) {setDisciplina(d);}
     }
 
     public void setDisciplina(Disciplina disciplina) {disciplinas.put(disciplina.getCodigo(), disciplina);}
