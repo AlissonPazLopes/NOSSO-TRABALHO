@@ -93,7 +93,7 @@ public class Model {
      */
 
     public void notifica() {for(Observer o : observers) o.update();}
-    public void addObserver(Observer o) {observers.add(o);}
-    public void removeObserver(Observer o) {observers.remove(o);}
+    public void attachObserver(Observer o) {observers.add(o);}
+    public void detachObserver(Observer o) {observers.remove(o);}
 
 }
