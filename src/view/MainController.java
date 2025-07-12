@@ -21,7 +21,7 @@ public class MainController implements Observer {
         switch(event) {
             case "1":
                 LoginView viewL = new LoginView();
-                //viewL.init(model);
+                viewL.init(model);
                 break;
             case "2":
                 RegisterView viewR = new RegisterView();

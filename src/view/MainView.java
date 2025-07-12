@@ -28,19 +28,19 @@ public class MainView implements Observer {
 
         do {
             System.out.println("""
-      ================================================
-      ||   Bem-vindo ao Sistema do Plano de Ensino  ||
-      ================================================
+                ================================================
+                ||   Bem-vindo ao Sistema do Plano de Ensino  ||
+                ================================================
 
-      Escolha uma opção:
-      """);
-      System.out.println(opcoes[0]);
-      System.out.println(opcoes[1]);
-      System.out.println(opcoes[2]);
-      System.out.print("Digite a opção desejada: ");
-      String event = sc.nextLine();
-      controller.handleEvent(event);
-    } while (!finalizar);
+                Escolha uma opção:
+                """);
+        System.out.println(opcoes[0]);
+        System.out.println(opcoes[1]);
+        System.out.println(opcoes[2]);
+        System.out.print("Digite a opção desejada: ");
+        String event = sc.nextLine();
+        controller.handleEvent(event);
+        } while (!finalizar);
     sc.close();
   }
 
