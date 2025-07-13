@@ -1,6 +1,9 @@
 package view;
 
 import model.Model;
+import model.Usuario;
+import model.Aluno;
+import model.Professor;
 
 public class LoginController implements Observer{
     private Model model;
@@ -22,6 +25,14 @@ public class LoginController implements Observer{
                     view.exibirMsg("ERRO: Login ou senha invalidos.");
                 } else {
                     view.exibirMsg("Login realizado com sucesso!");
+                    Usuario usuario = model.getUsuarioAutenticado();
+                    if(usuario instanceof Aluno) {
+                        HomeAlunoView viewHA = new HomeAlunoView();
+                        viewHA.init(model);
+                    } else if(usuario instanceof Professor) {
+                        HomeProfessorView viewHP = new HomeProfessorView();
+                        viewHP.init(model);
+                    }
                 }
                 model.detachObserver(this);
                 break;
