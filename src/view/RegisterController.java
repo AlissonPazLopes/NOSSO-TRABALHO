@@ -33,6 +33,7 @@ public class RegisterController implements Observer {
                     Professor professor = new Professor(nome, login, senha, view.getDisciplinas());
                     model.setUsuario(professor);
                 }
+                model.detachObserver(this);
                 break;
         }
     }

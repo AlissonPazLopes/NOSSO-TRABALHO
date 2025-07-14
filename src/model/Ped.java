@@ -3,9 +3,11 @@ package model;
 import java.util.ArrayList;
 
 public class Ped {
-    private String codigo;
-    //private Identificacao identificacao ??? (para armazenar unidade/cursos/codigo/nome/carater etc etc...)
+    private Professor professor;
     private Disciplina disciplina;
+    private CaraterDisciplina carater;
+    private CargaHoraria cargaHoraria;
+    private String requisitos;
     private String justificativa;
     private String ementa;
     private String objetivos;
@@ -15,16 +17,41 @@ public class Ped {
     private String sistemaAvaliacao;
     private String bibliografia;
 
-
-    public void setCodigo(String codigo) {
-        if(codigo == null) return;
-        Ped ped = Model.getInstancia().getPed(codigo);
-        if(ped != null) return;
-        this.codigo = codigo.toUpperCase();
+    public Ped(
+        Professor professor,
+        Disciplina disciplina, 
+        CaraterDisciplina carater, 
+        CargaHoraria cargaHoraria,
+        String requisitos, 
+        String justificativa, 
+        String ementa,
+        String objetivos, 
+        String metodologia, 
+        String atividadesDiscentes,
+        String sistemaAvaliacao, 
+        String bibliografia
+        ) {
+            super();
+            setProfessor(professor);
+            setDisciplina(disciplina);
+            setCarater(carater);
+            setCargaHoraria(cargaHoraria);
+            setRequisitos(requisitos);
+            setJustificativa(justificativa);
+            setEmenta(ementa);
+            setObjetivos(objetivos);
+            setMetodologia(metodologia);
+            setAtividadesDiscentes(atividadesDiscentes);
+            setSistemaAvaliacao(sistemaAvaliacao);
+            setBibliografia(bibliografia);
     }
 
-    public String getCodigo() {
-        return codigo;
+    public void setProfessor(Professor professor) {
+        if(professor != null) this.professor = professor;
+    }
+
+    public Professor getProfessor() {
+        return professor;
     }
 
     public void setDisciplina(Disciplina disciplina) {
@@ -32,6 +59,37 @@ public class Ped {
     }
 
     public Disciplina getDisciplina() {return disciplina;}
+
+    public void setCarater(CaraterDisciplina carater) {
+        if(carater != null) {
+            this.carater = carater;
+        }
+    }
+
+    public CaraterDisciplina getCarater() {
+        return carater;
+    }
+
+    public void setCargaHoraria(CargaHoraria cargaHoraria) {
+        if(cargaHoraria != null) {
+            this.cargaHoraria = cargaHoraria;
+        }
+    }
+
+    public CargaHoraria getCargaHoraria() {
+        return cargaHoraria;
+    }
+
+    public void setRequisitos(String requisitos) {
+        if(requisitos == null) {
+            this.requisitos = "";
+        }
+        this.requisitos = requisitos;
+    }
+
+    public String getRequisitos() {
+        return requisitos;
+    }
 
     public void setJustificativa(String justificativa) {
         if(justificativa != null) {
@@ -102,4 +160,6 @@ public class Ped {
     public String getBibliografia() {
         return bibliografia;
     }
+
+    
 }

@@ -34,8 +34,7 @@ public class HomeAlunoController implements Observer {
             case "4":
                 view.exibirMsg("Realizando Logout...");
                 model.deslogarUsuario();
-                MainView viewM = new MainView();
-                viewM.init(model);
+                model.detachObserver(this);
                 break;
         }
     }

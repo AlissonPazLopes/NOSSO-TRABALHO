@@ -38,8 +38,7 @@ public class HomeProfessorController implements Observer {
             case "5":
                 view.exibirMsg("Realizando Logout...");
                 model.deslogarUsuario();
-                MainView viewM = new MainView();
-                viewM.init(model);
+                model.detachObserver(this);
                 break;
         }
     }

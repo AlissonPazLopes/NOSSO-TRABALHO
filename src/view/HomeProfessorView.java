@@ -35,6 +35,7 @@ public class HomeProfessorView implements Observer {
         System.out.println(opcoes[1]);
         System.out.println(opcoes[2]);
         System.out.println(opcoes[3]);
+        System.out.println(opcoes[4]);
         System.out.print("Digite a opção desejada: ");
         String event = sc.nextLine();
         controller.handleEvent(event);

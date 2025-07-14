@@ -10,7 +10,8 @@ public class Model {
     private static Model instanciaUnica;
     private Usuario usuarioAutenticado;
 
-    private HashMap<String, Ped> peds = new HashMap<>();
+    //private HashMap<String, Ped> peds = new HashMap<>();
+    private ArrayList<Ped> peds = new ArrayList<>();
     private HashMap<String, Ped> pedsSolicitados = new HashMap<>();
     private HashMap<String, Usuario> usuarios = new HashMap<>();
     private ArrayList<Observer> observers = new ArrayList<>();
@@ -81,19 +82,34 @@ public class Model {
         notifica();
     }
 
-    public void addPed(String codigo) {
+    /*public void addPed(String codigo) {
         if(pedsSolicitados.containsKey(codigo)) {
             peds.put(codigo, pedsSolicitados.get(codigo));
             notifica();
         }
+    }*/
+
+    public void addPed(Ped ped) {
+        if(ped != null) {
+            peds.add(ped);
+            notifica();
+        }
     }
 
-    public void removePed(String codigo) {
+    /*public void removePed(String codigo) {
         if(peds.get(codigo) != null) {peds.remove(codigo);}
+    }*/
+
+    public void removePed(Ped ped) {
+        peds.remove(ped);
     }
 
-    public Ped getPed(String codigo) {return peds.get(codigo);} //retorna um ped especifico
-    public int getTotalPeds() {return peds.size();}
+    public ArrayList<Ped> getPeds() {
+        return peds;
+    }
+
+    //public Ped getPed(String codigo) {return peds.get(codigo);} //retorna um ped especifico
+    //public int getTotalPeds() {return peds.size();}
 
     /*
      *metodos envolvendo observers
