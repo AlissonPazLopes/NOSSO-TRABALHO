@@ -38,4 +38,6 @@ public class HomeAlunoController implements Observer {
                 break;
         }
     }
+
+    public void update() {}
 }

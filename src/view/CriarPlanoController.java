@@ -23,6 +23,7 @@ public class CriarPlanoController implements Observer {
                 Professor professor = (Professor) model.getUsuarioAutenticado();
                 Disciplina disciplina = new Disciplina(view.getDisciplina(), view.getCodigo());
                 Ped ped = new Ped(
+                    view.getCodigo(),
                     professor,
                     disciplina, 
                     view.getCarater(),
