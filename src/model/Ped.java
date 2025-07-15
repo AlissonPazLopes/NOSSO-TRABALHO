@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Ped {
+    private String codigo;
     private Professor professor;
     private Disciplina disciplina;
     private CaraterDisciplina carater;
@@ -18,6 +19,7 @@ public class Ped {
     private String bibliografia;
 
     public Ped(
+        String codigo,
         Professor professor,
         Disciplina disciplina, 
         CaraterDisciplina carater, 
@@ -32,6 +34,7 @@ public class Ped {
         String bibliografia
         ) {
             super();
+            setCodigo(codigo);
             setProfessor(professor);
             setDisciplina(disciplina);
             setCarater(carater);
@@ -45,6 +48,16 @@ public class Ped {
             setSistemaAvaliacao(sistemaAvaliacao);
             setBibliografia(bibliografia);
     }
+
+    public void setCodigo(String codigo) {
+        Model model = Model.getInstancia();
+        for(Ped ped: model.getPeds()) {
+            if(ped.getCodigo().equals(codigo)) {return;}
+        }
+        this.codigo = codigo;
+    }
+
+    public String getCodigo() {return codigo;}
 
     public void setProfessor(Professor professor) {
         if(professor != null) this.professor = professor;

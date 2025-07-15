@@ -3,9 +3,64 @@ package view;
 import java.util.*;
 import model.*;
 
-public class PerfilView {
+public class PerfilView implements Observer {
     private Model model;
     private PerfilController controller;
+    private Usuario usuarioAutenticado;
+    private int escolha;
 
-    public void init(Model model) {}
+    public void init(Model model) {
+        this.model = model;
+        controller = new PerfilController();
+        usuarioAutenticado = model.getUsuarioAutenticado();
+        controller.init(model, this);
+        model.attachObserver(this);
+        verPerfil();
+    }
+
+    public void verPerfil() {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<String> opcoes = new ArrayList<>();
+        opcoes.add("1 - Sair");
+        opcoes.add("2 - Nome");
+        opcoes.add("3 - Login");
+        opcoes.add("4 - Senha");
+        if(usuarioAutenticado instanceof Aluno) {opcoes.add("5 - Matricula");
+                                                 opcoes.add("6 - Curso");}
+
+        else{
+            Professor professor = (Professor) usuarioAutenticado;
+            int proximoNumeroOpcao = opcoes.size() + 1;
+            for(int i = 0; i < professor.getTotalDisciplinas(); i++){
+                opcoes.add(proximoNumeroOpcao + " - Disciplina");
+                proximoNumeroOpcao++;
+            }
+        }
+
+        System.out.println("""
+        ================================================
+                           Perfil
+        ================================================
+        """);
+        System.out.println(usuarioAutenticado);
+        System.out.println("\nEscolha: [Sair / Mudar um dado]");
+
+        for(String opcao : opcoes) {System.out.println(opcao);}
+
+        System.out.println("\nOpcao: ");
+        escolha = sc.nextInt();
+
+        controller.handleEvent("OK");
+        model.detachObserver(this);
+    }
+
+    public int getEscolha() {return escolha;}
+
+    public void exibirMsg(String msg) {
+        System.out.println();
+        System.out.println(msg);
+        System.out.println();
+    }
+
+    public void update() {}
 }

@@ -30,4 +30,14 @@ public class Aluno extends Usuario {
     public String getCurso() {
         return curso;
     }
+
+    public String toString() {
+        String perfil = "[1] - Nome: " + getNome() +
+                        "\n[2] - Login: " + getLogin() +
+                        "\n[3] - Senha: " + getSenha() +
+                        "\n[4] - Matricula: " + getMatricula() +
+                        "\n[5] - Curso: " + getCurso();
+
+        return perfil;
+    }
 }

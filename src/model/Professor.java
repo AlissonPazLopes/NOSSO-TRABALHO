@@ -14,20 +14,21 @@ public class Professor extends Usuario {
     public void setDisciplina(Disciplina disciplina) {disciplinas.put(disciplina.getCodigo(), disciplina);}
 
     public Disciplina getDisciplina(String codigo) {return disciplinas.get(codigo);}
-}
 
+    public int getTotalDisciplinas() {return disciplinas.size();}
 
-/*  // possível maneira de fazer classe professor, decidir qual é a melhor
-package model;
+    public String toString() {
 
-import java.util.ArrayList;
+        String perfil = "[1] - Nome: " + getNome() +
+                        "\n[2] - Login: " + getLogin() +
+                        "\n[3] - Senha: " + getSenha();
 
-public class Professor extends Usuario {
-    private ArrayList<String> disciplinasLecionadas = new ArrayList<>(); // Usar uma classe Disciplina talvez?? (toda disciplina tem um nome, codigo, carga horaria, etc)
-    private ArrayList<Ped> pedsCriados = new ArrayList<>();
+        int i = 4;
+        for (Disciplina disciplina : disciplinas.values()) {
+            perfil += "\n[" + i + "] - Disciplina: " + disciplina.getNome(); // Pega o nome da disciplina
+            i++;
+        }
 
-    public Professor(String nome, String login, String senha) {
-        super(nome, login, senha);
+        return perfil;
     }
 }
- */
