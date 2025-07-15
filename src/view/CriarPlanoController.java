@@ -13,7 +13,7 @@ public class CriarPlanoController implements Observer {
         if (model != null && view != null) {
             this.model = model;
             this.view = view;
-            model.attachObserver(view);
+            model.attachObserver(this);
         }
     }
 
