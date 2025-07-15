@@ -30,9 +30,12 @@ public class PerfilView implements Observer {
         else{
             Professor professor = (Professor) usuarioAutenticado;
             int proximoNumeroOpcao = opcoes.size() + 1;
-            for(int i = 0; i < professor.getTotalDisciplinas(); i++){
-                opcoes.add(proximoNumeroOpcao + " - Disciplina");
-                proximoNumeroOpcao++;
+            for(int i = 0; i < professor.getTotalDisciplinas() + 1; i++){
+                if(i == professor.getTotalDisciplinas()) opcoes.add(proximoNumeroOpcao + " - Adicionar disciplina");
+                else {
+                    opcoes.add(proximoNumeroOpcao + " - Remover disciplina");
+                    proximoNumeroOpcao++;
+                }
             }
         }
 

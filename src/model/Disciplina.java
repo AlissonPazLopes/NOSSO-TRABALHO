@@ -5,6 +5,7 @@ public class Disciplina {
     private String codigo;
 
     public Disciplina(String nome, String codigo) {
+        if(nome.isEmpty() || codigo.isEmpty()) return;
         this.nome = nome;
         this.codigo = codigo.toUpperCase();
     }
