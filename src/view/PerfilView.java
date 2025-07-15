@@ -7,7 +7,6 @@ public class PerfilView implements Observer {
     private Model model;
     private PerfilController controller;
     private Usuario usuarioAutenticado;
-    private int escolha;
 
     public void init(Model model) {
         this.model = model;
@@ -48,13 +47,11 @@ public class PerfilView implements Observer {
         for(String opcao : opcoes) {System.out.println(opcao);}
 
         System.out.println("\nOpcao: ");
-        escolha = sc.nextInt();
+        int event = sc.nextInt();
 
-        controller.handleEvent("OK");
+        controller.handleEvent(event);
         model.detachObserver(this);
     }
-
-    public int getEscolha() {return escolha;}
 
     public void exibirMsg(String msg) {
         System.out.println();

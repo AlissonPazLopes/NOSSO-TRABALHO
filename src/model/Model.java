@@ -46,6 +46,8 @@ public class Model {
         }
     }
 
+    public void removeUsuario(String login) {usuarios.remove(login);}
+
     public boolean autenticarUsuario(String login, String senha) {
         Usuario usuario;
         boolean autenticado = false;
