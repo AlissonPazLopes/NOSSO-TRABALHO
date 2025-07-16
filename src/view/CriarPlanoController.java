@@ -21,11 +21,10 @@ public class CriarPlanoController implements Observer {
         switch(event) {
             case "OK":
                 Professor professor = (Professor) model.getUsuarioAutenticado();
-                Disciplina disciplina = new Disciplina(view.getDisciplina(), view.getCodigo());
-                Ped ped = new Ped(
+                model.cadastrarPed(
                     view.getCodigo(),
                     professor,
-                    disciplina, 
+                    view.getDisciplina(),
                     view.getCarater(),
                     view.getCargaHoraria(),
                     view.getRequisitos(), 
@@ -37,7 +36,6 @@ public class CriarPlanoController implements Observer {
                     view.getSistemaAvaliacao(), 
                     view.getBibliografia()
                 );
-                model.addPed(ped);
                 view.exibirMsg("Plano criado com sucesso! Para adicionar o calendario de atividades, va em 'Ver Planos de Ensino Criados'");
                 HomeProfessorView viewHP = new HomeProfessorView();
                 viewHP.init(model);

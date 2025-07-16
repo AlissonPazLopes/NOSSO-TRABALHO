@@ -98,6 +98,40 @@ public class Model {
         }
     }
 
+    public void cadastrarPed(
+    String codigo,
+    Professor professor,
+    String nomeDisciplina,
+    CaraterDisciplina carater,
+    CargaHoraria cargaHoraria,
+    String requisitos,
+    String justificativa,
+    String ementa,
+    String objetivos,
+    String metodologia,
+    String atividadesDiscentes,
+    String sistemaAvaliacao,
+    String bibliografia
+) {
+    Disciplina disciplina = new Disciplina(nomeDisciplina, codigo);
+    Ped ped = new Ped(
+        codigo,
+        professor,
+        disciplina,
+        carater,
+        cargaHoraria,
+        requisitos,
+        justificativa,
+        ementa,
+        objetivos,
+        metodologia,
+        atividadesDiscentes,
+        sistemaAvaliacao,
+        bibliografia
+    );
+    addPed(ped);
+}
+
     /*public void removePed(String codigo) {
         if(peds.get(codigo) != null) {peds.remove(codigo);}
     }*/
