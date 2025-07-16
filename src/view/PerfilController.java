@@ -96,11 +96,14 @@ public class PerfilController implements Observer {
                 int i = event - 4;
                 int j = 1;
                 for (Disciplina disciplina : u.getDisciplinas().values()) {
-                    if (j == i) u.removeDisciplina(disciplina);
-                    model.removeUsuario(usuario.getLogin());
-                    model.setUsuario(u);
-                    PerfilView view = new PerfilView();
-                    view.init(model);
+                    if (j == i) {
+                        u.removeDisciplina(disciplina);
+                        model.removeUsuario(usuario.getLogin());
+                        model.setUsuario(u);
+                        PerfilView view = new PerfilView();
+                        view.init(model);
+                        break;
+                    }
                     j++;
                 }
             }
