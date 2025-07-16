@@ -39,6 +39,6 @@ public class RegisterController implements Observer {
     }
 
     public void update() {
-
+// não sei fazer o que tem aqui ainda!
     }
 }

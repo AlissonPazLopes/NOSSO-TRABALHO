@@ -2,6 +2,7 @@ package view;
 
 import java.util.*;
 import model.*;
+import model.exception.SenhaInvalidaException;
 
 public class RegisterView implements Observer {
     private Model model;
@@ -68,12 +69,31 @@ public class RegisterView implements Observer {
         nome = sc.nextLine();
         System.out.print("Digite seu login: ");
         login = sc.nextLine();
-        System.out.print("Digite sua senha: ");
-        senha = sc.nextLine();
-        controller.handleEvent("OK");
 
+        while (true) { // Loop infinito que só para com o 'break'
+            System.out.print("Digite sua senha: ");
+            this.senha = sc.nextLine();
+            try {
+                controller.handleEvent("OK");
+                // Se chegou aqui, a exceção não foi lançada, então o cadastro foi um sucesso
+                System.out.println(" Usuário cadastrado com sucesso!");
+                break;
+
+            } catch (SenhaInvalidaException e) {
+                // Pega o erro específico da senha, mostra a mensagem e continua o loop
+                System.out.println(" Erro: " + e.getMessage());
+                System.out.println("Por favor, tente novamente.");
+            } catch (Exception e) {
+                // Pega qualquer outro erro inesperado para não quebrar o programa
+                System.out.println("Ocorreu um erro inesperado: " + e.getMessage());
+                break;
+
+            }
+        }
         model.detachObserver(this);
     }
+
+
 
     public String getNome() {
         return nome;
