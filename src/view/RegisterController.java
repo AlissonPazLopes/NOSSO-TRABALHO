@@ -27,16 +27,15 @@ public class RegisterController implements Observer {
                 if(tipoUsuario.equals("1")) {
                     String curso = view.getCurso();
                     String matricula = view.getMatricula();
-                    Aluno aluno = new Aluno(nome, login, senha, Integer.parseInt(matricula), curso);
-                    model.setUsuario(aluno);
+                    model.setUsuario(nome, login, senha, Integer.parseInt(matricula), curso);
                 } else if(tipoUsuario.equals("2")) {
-                    Professor professor = new Professor(nome, login, senha, view.getDisciplinas());
-                    model.setUsuario(professor);
+                    model.setUsuario(nome, login, senha, view.getDisciplinas());
                 }
                 model.detachObserver(this);
                 break;
         }
     }
+
 
     public void update() {
 // não sei fazer o que tem aqui ainda!

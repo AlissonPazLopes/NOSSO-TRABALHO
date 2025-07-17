@@ -59,7 +59,6 @@ public class PerfilView implements Observer {
     public void exibirMsg(String msg) {
         System.out.println();
         System.out.println(msg);
-        System.out.println();
     }
 
     public void update() {}

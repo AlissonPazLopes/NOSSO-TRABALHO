@@ -37,7 +37,7 @@ public class MainView implements Observer {
             System.out.println(opcoes[0]);
             System.out.println(opcoes[1]);
             System.out.println(opcoes[2]);
-            System.out.print("Digite a opção desejada: ");
+            System.out.print("\nDigite a opção desejada: ");
             String event = sc.nextLine();
             controller.handleEvent(event);
         } while(!finalizar);

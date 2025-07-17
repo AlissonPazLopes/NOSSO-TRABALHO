@@ -39,12 +39,26 @@ public class Model {
         }
     }*/
 
+    //adiciona um usuario qualquer
     public void setUsuario(Usuario usuario) {
         if (usuario != null && usuario.getLogin() != null) {
             usuarios.put(usuario.getLogin(), usuario);
             notifica();
         }
     }
+
+    //cria e adiciona um aluno
+    public void setUsuario(String nome, String login, String senha, int matricula, String curso){
+        Aluno aluno = new Aluno(nome, login, senha, matricula, curso);
+        setUsuario(aluno);
+    }
+
+    //cria e adiciona um professor
+    public void setUsuario(String nome, String login, String senha, ArrayList<Disciplina> disciplinas){
+        Professor professor = new Professor(nome, login, senha, disciplinas);
+        setUsuario(professor);
+    }
+
 
     public void removeUsuario(String login) {usuarios.remove(login);}
 

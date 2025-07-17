@@ -26,7 +26,7 @@ public class ConsultaView implements Observer {
             ||              Consulta de Planos             ||
             =================================================
             """);
-            System.out.println("Digite o nome da disciplina para buscar (ou digite 0 para voltar ao menu anterior): ");
+            System.out.println("\nDigite o nome da disciplina para buscar (ou digite 0 para voltar ao menu anterior): ");
             busca = sc.nextLine().trim().toLowerCase();
 
             if(busca.equals("0")) {

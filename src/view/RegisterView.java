@@ -32,10 +32,10 @@ public class RegisterView implements Observer {
                            Cadastro
         ================================================
         """);
-        
+
         System.out.println(opcoes[0]);
         System.out.println(opcoes[1]);
-        System.out.print("Escolha o tipo de usuario: ");
+        System.out.print("\nEscolha o tipo de usuario: ");
         tipoUsuario = sc.nextLine();
         if(tipoUsuario.equals("1")) {
             String[] cursos = {
@@ -48,7 +48,7 @@ public class RegisterView implements Observer {
             for(String c : cursos) {
                 System.out.println(c);
             }
-            System.out.print("Escolha a sigla do seu curso: ");
+            System.out.print("\nEscolha a sigla do seu curso: ");
             curso = sc.nextLine();
 
             System.out.print("Digite sua matricula: ");
@@ -65,32 +65,38 @@ public class RegisterView implements Observer {
                 resposta = sc.nextLine().trim().toLowerCase();
             } while(resposta.equals("s") || resposta.equals("sim"));
         }
-        System.out.print("Digite seu nome: ");
-        nome = sc.nextLine();
-        System.out.print("Digite seu login: ");
-        login = sc.nextLine();
 
-        while (true) { // Loop infinito que só para com o 'break'
-            System.out.print("Digite sua senha: ");
-            this.senha = sc.nextLine();
-            try {
-                controller.handleEvent("OK");
-                // Se chegou aqui, a exceção não foi lançada, então o cadastro foi um sucesso
-                System.out.println(" Usuário cadastrado com sucesso!");
-                break;
+        if(tipoUsuario.equals("1") || tipoUsuario.equals("2")) {
+            System.out.print("Digite seu nome: ");
+            nome = sc.nextLine();
+            System.out.print("Digite seu login: ");
+            login = sc.nextLine();
 
-            } catch (SenhaInvalidaException e) {
-                // Pega o erro específico da senha, mostra a mensagem e continua o loop
-                System.out.println(" Erro: " + e.getMessage());
-                System.out.println("Por favor, tente novamente.");
-            } catch (Exception e) {
-                // Pega qualquer outro erro inesperado para não quebrar o programa
-                System.out.println("Ocorreu um erro inesperado: " + e.getMessage());
-                break;
+            while (true) { // Loop infinito que só para com o 'break'
+                System.out.print("Digite sua senha: ");
+                this.senha = sc.nextLine();
+                try {
+                    controller.handleEvent("OK");
+                    // Se chegou aqui, a exceção não foi lançada, então o cadastro foi um sucesso
+                    System.out.println("Usuário cadastrado com sucesso!");
+                    break;
 
+                } catch (SenhaInvalidaException e) {
+                    // Pega o erro específico da senha, mostra a mensagem e continua o loop
+                    System.out.println(" Erro: " + e.getMessage());
+                    System.out.println("Por favor, tente novamente.");
+                } catch (Exception e) {
+                    // Pega qualquer outro erro inesperado para não quebrar o programa
+                    System.out.println("Ocorreu um erro inesperado: " + e.getMessage());
+                    break;
+
+                }
             }
+            model.detachObserver(this);
+        } else {
+            System.out.println("\nEscolha uma opcao valida!\n");
+            model.detachObserver(this);
         }
-        model.detachObserver(this);
     }
 
 
