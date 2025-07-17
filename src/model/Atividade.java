@@ -1,8 +1,5 @@
 package model;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 public class Atividade {
     private String data;
     private String descricao;
@@ -24,7 +21,7 @@ public class Atividade {
     public void setDescricao(String descricao) {this.descricao = descricao;}
 
     public void setCargaHoraria(int cargaHoraria) {
-        if(cargaHoraria >= 0 && cargaHoraria <= 4) this.cargaHoraria = cargaHoraria;
+        this.cargaHoraria = cargaHoraria;
     }
 
     public String getData() {return data;}

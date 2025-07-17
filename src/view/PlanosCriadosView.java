@@ -92,7 +92,7 @@ public class PlanosCriadosView implements Observer {
         System.out.println("\n============= Calendario de Atividades =============");
         System.out.println();
         for(Atividade atividade: ped.getCalendario()) {
-            System.out.print(atividade.getData() + " - " + atividade.getDescricao() + " - " + atividade.getCargaHoraria());
+            System.out.println(atividade.getData() + " - " + atividade.getDescricao() + " - " + atividade.getCargaHoraria());
         }
         System.out.println();
 

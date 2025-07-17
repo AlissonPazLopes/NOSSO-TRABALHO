@@ -52,10 +52,6 @@ public class Ped {
     }
 
     public void setCodigo(String codigo) {
-        Model model = Model.getInstancia();
-        for(Ped ped: model.getPeds()) {
-            if(ped.getCodigo().equals(codigo)) {return;}
-        }
         this.codigo = codigo;
     }
 

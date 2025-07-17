@@ -13,7 +13,6 @@ public class CriarPlanoController implements Observer {
         if (model != null && view != null) {
             this.model = model;
             this.view = view;
-            this.calendario = model.criarCalendario(view.getDatas(), view.getDescricoes(), view.getHoras());
             model.attachObserver(this);
         }
     }
@@ -21,6 +20,7 @@ public class CriarPlanoController implements Observer {
     public void handleEvent(String event) {
         switch(event) {
             case "OK":
+                this.calendario = model.criarCalendario(view.getDatas(), view.getDescricoes(), view.getHoras());
                 Professor professor = (Professor) model.getUsuarioAutenticado();
                 model.cadastrarPed(
                     view.getCodigo(),
