@@ -20,17 +20,17 @@ public class PerfilView implements Observer {
     public void verPerfil() {
         Scanner sc = new Scanner(System.in);
         ArrayList<String> opcoes = new ArrayList<>();
-        opcoes.add("1 - Sair");
-        opcoes.add("2 - Nome");
-        opcoes.add("3 - Login");
-        opcoes.add("4 - Senha");
-        if(usuarioAutenticado instanceof Aluno) {opcoes.add("5 - Matricula");
-                                                 opcoes.add("6 - Curso");}
+        opcoes.add("0 - Sair");
+        opcoes.add("1 - Nome");
+        opcoes.add("2 - Login");
+        opcoes.add("3 - Senha");
+        if(usuarioAutenticado instanceof Aluno) {opcoes.add("4 - Matricula");
+                                                 opcoes.add("5 - Curso");}
 
         else{
             Professor professor = (Professor) usuarioAutenticado;
-            int proximoNumeroOpcao = opcoes.size() + 1;
-            for(int i = 0; i < professor.getTotalDisciplinas() + 1; i++){
+            int proximoNumeroOpcao = opcoes.size();
+            for(int i = 0; i <= professor.getTotalDisciplinas(); i++){
                 if(i == professor.getTotalDisciplinas()) opcoes.add(proximoNumeroOpcao + " - Adicionar disciplina");
                 else {
                     opcoes.add(proximoNumeroOpcao + " - Remover disciplina");
@@ -45,11 +45,11 @@ public class PerfilView implements Observer {
         ================================================
         """);
         System.out.println(usuarioAutenticado);
-        System.out.println("\nEscolha: [Sair / Mudar um dado]");
+        System.out.println("\nEscolha: [Sair / Mudar um dado]\n");
 
         for(String opcao : opcoes) {System.out.println(opcao);}
 
-        System.out.println("\nOpcao: ");
+        System.out.print("\nOpcao: ");
         int event = sc.nextInt();
 
         controller.handleEvent(event);
@@ -57,8 +57,7 @@ public class PerfilView implements Observer {
     }
 
     public void exibirMsg(String msg) {
-        System.out.println();
-        System.out.println(msg);
+        System.out.print(msg);
     }
 
     public void update() {}

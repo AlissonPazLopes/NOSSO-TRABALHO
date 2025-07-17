@@ -34,7 +34,7 @@ public class Professor extends Usuario {
             i++;
         }
 
-        chaveAddDisciplina = i + 1;
+        chaveAddDisciplina = i;
 
         return perfil;
     }

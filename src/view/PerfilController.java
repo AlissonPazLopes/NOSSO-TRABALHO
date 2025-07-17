@@ -27,7 +27,7 @@ public class PerfilController implements Observer {
     public void handleEvent(int event) {
         Scanner sc = new Scanner(System.in);
         switch(event) {
-            case 1:
+            case 0:
                 if(model.getUsuarioAutenticado() instanceof Aluno){
                     HomeAlunoView view = new HomeAlunoView();
                     view.init(model);
@@ -37,28 +37,28 @@ public class PerfilController implements Observer {
                     view.init(model);
                     break;
                 }
-            case 2:
+            case 1:
                 this.view.exibirMsg("Novo nome: ");
                 String nome = sc.nextLine();
                 model.removeUsuario(usuario.getLogin());
                 usuario.setNome(nome);
                 mudarPerfil();
                 break;
-            case 3:
+            case 2:
                 this.view.exibirMsg("Novo login: ");
                 String login = sc.nextLine();
                 model.removeUsuario(usuario.getLogin());
                 usuario.setLogin(login);
                 mudarPerfil();
                 break;
-            case 4:
+            case 3:
                 this.view.exibirMsg("Nova senha: ");
                 String senha = sc.nextLine();
                 model.removeUsuario(usuario.getLogin());
                 usuario.setSenha(senha);
                 mudarPerfil();
                 break;
-            case 5:
+            case 4:
                 if(usuario instanceof Aluno){
                     Aluno u = (Aluno) usuario;
                     this.view.exibirMsg("Nova matricula: ");
@@ -68,7 +68,7 @@ public class PerfilController implements Observer {
                     mudarPerfil();
                     break;
                 } else break;
-            case 6:
+            case 5:
                 if(usuario instanceof Aluno){
                     Aluno u = (Aluno) usuario;
                     this.view.exibirMsg("Novo curso: ");
@@ -80,7 +80,7 @@ public class PerfilController implements Observer {
                 } else break;
         }
 
-        if(usuario instanceof Professor && event >= 5) {
+        if(usuario instanceof Professor && event >= 4) {
             Professor u = (Professor) usuario;
             if(event == u.getChaveAddDisciplina()){
                 view.exibirMsg("Escreva o nome da disciplina: ");
@@ -93,7 +93,7 @@ public class PerfilController implements Observer {
                 PerfilView view = new PerfilView();
                 view.init(model);
             } else {
-                int i = event - 4;
+                int i = event - 3;
                 int j = 1;
                 for (Disciplina disciplina : u.getDisciplinas().values()) {
                     if (j == i) {
