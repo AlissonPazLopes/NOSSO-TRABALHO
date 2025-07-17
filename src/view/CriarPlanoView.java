@@ -27,8 +27,16 @@ public class CriarPlanoView implements Observer {
         menuCriarPlano();
     }
 
+    //dados das atividades
+    ArrayList<String> datas = new ArrayList<>();
+    ArrayList<String> descricoes = new ArrayList<>();
+    ArrayList<Integer> horas = new ArrayList<>();
+
     public void menuCriarPlano() {
         Scanner sc = new Scanner(System.in);
+
+        int horasCriadas = 0;
+
         String tiposCarater[] = {"1 - Obrigatoria", "2 - Optativa"};
         String cargas[] = {"1 - 32 horas", "2 - 64 horas"};
         String resposta;
@@ -73,44 +81,72 @@ public class CriarPlanoView implements Observer {
             objetivos = sc.nextLine();
             System.out.println("Digite a metodologia da disciplina: ");
             metodologia = sc.nextLine();
-            System.out.println("Digite as atividades discentes: ");
+
+            int contAtividades = 1;
+            System.out.println("\n======== Criacao do Calendario de Atividades =======");
+            do{
+
+                System.out.println("\n---- Atividade " + contAtividades + " / Faltam " + (cargaHoraria.getHoras() - horasCriadas) + " horas ----\n");
+
+                System.out.print("Data[DD/MM]: ");
+                String data = sc.nextLine();
+                System.out.print("Descricao: ");
+                String descricao = sc.nextLine();
+                System.out.print("Carga Horaria: ");
+                int tempo = sc.nextInt();
+                sc.nextLine(); // corrige erro de pular algumas entradas
+
+                datas.add(data);
+                descricoes.add(descricao);
+                horas.add(tempo);
+
+                horasCriadas += tempo;
+                contAtividades++;
+            } while(horasCriadas < cargaHoraria.getHoras());
+
+            System.out.println("\nDigite as atividades discentes: ");
             atividadesDiscentes = sc.nextLine();
             System.out.println("Informe o sistema de avaliacao da disciplina: ");
             sistemaAvaliacao = sc.nextLine();
             System.out.println("Informe a bibliografia da disciplina: ");
             bibliografia = sc.nextLine();
-            System.out.println(String.format("""
-            Nome: %s
-            Codigo: %s
-            Carater: %s
-            Carga horaria: %s
-            Requisitos: %s
-            Justificativa: %s
-            Ementa: %s
-            Objetivos: %s
-            Metodologia: %s
-            Atividades discentes: %s
-            Sistema de avaliacao: %s
-            Bibliografia: %s
-            """,
-            disciplina,
-            codigo,
-            carater,
-            cargaHoraria,
-            requisitos,
-            justificativa,
-            ementa,
-            objetivos,
-            metodologia,
-            atividadesDiscentes,
-            sistemaAvaliacao,
-            bibliografia));
+
+            System.out.println(
+                "\nNome: " + disciplina +
+                "\nCodigo: " + codigo +
+                "\nCarater: " + carater +
+                "\nCargaHoraria" + cargaHoraria +
+                "\nRequisitos: " + requisitos +
+                "\nJustificativa: " + justificativa +
+                "\nEmenta: " + ementa +
+                "\nObjetivos: " + objetivos
+            );
+
+            System.out.println("\n======== Calendario de Atividades =======");
+            System.out.println();
+            for(int i = 0; i < datas.size(); i++){ // tamanho de datas == quantidade de atividades
+                System.out.println(datas.get(i) + " - " + descricoes.get(i) + " - " + horas.get(i) + " horas");
+            }
+
+            System.out.println(
+                "\nMetodologia: " + metodologia +
+                "\nAtividades discentes: " + atividadesDiscentes +
+                "\nSistema de Avaliacao: " + sistemaAvaliacao +
+                "\nBibliografia: " + bibliografia
+            );
+
             System.out.println("Os dados estao corretos? (S/N)");
             resposta = sc.nextLine().trim().toUpperCase();
         } while (resposta.equals("N"));
         controller.handleEvent("OK");
         model.detachObserver(this);
     }
+
+    //gets das informacoes do calendario de atividades
+    public ArrayList<String> getDatas() {return datas;}
+    public ArrayList<String> getDescricoes() {return descricoes;}
+    public ArrayList<Integer> getHoras() {return horas;}
+
 
     public String getDisciplina() {
         return disciplina;

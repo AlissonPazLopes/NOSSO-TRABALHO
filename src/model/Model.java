@@ -32,13 +32,6 @@ public class Model {
      * metodos envolvendo usuario
      */
 
-    /*public void addUsuario(Usuario usuario) {
-        if (usuario != null && usuario.getLogin() != null) {
-            usuarios.put(usuario.getLogin(), usuario);
-            notifica();
-        }
-    }*/
-
     //adiciona um usuario qualquer
     public void setUsuario(Usuario usuario) {
         if (usuario != null && usuario.getLogin() != null) {
@@ -91,19 +84,32 @@ public class Model {
      *metodos envolvendo ped
      */
 
+    //metodo que cria e retorna um calendario de atividades
+    public ArrayList<Atividade> criarCalendario(ArrayList<String> datas, ArrayList<String> descricoes, ArrayList<Integer> horas) {
+        ArrayList<Atividade> calendario = new ArrayList<>();
+
+        for(int i = 0; i < datas.size(); i++) {
+            Atividade atividade = new Atividade();
+
+            String data = datas.get(i);
+            String descricao = descricoes.get(i);
+            int hora = horas.get(i);
+
+            atividade.setData(data);
+            atividade.setDescricao(descricao);
+            atividade.setCargaHoraria(hora);
+
+            calendario.add(atividade);
+        }
+        return calendario;
+    }
+
     public void addSolicitacaoPed(Ped ped) {
         Professor professor = (Professor) usuarioAutenticado; //so pode ser usado por professores
         if(professor.getDisciplina(ped.getDisciplina().getCodigo()) == null) return; //encerra se o professor e ped nao forem da mesma disciplina
         pedsSolicitados.put(ped.getCodigo(), ped);
         notifica();
     }
-
-    /*public void addPed(String codigo) {
-        if(pedsSolicitados.containsKey(codigo)) {
-            peds.put(codigo, pedsSolicitados.get(codigo));
-            notifica();
-        }
-    }*/
 
     public void addPed(Ped ped) {
         if(ped != null) {
@@ -122,6 +128,7 @@ public class Model {
     String justificativa,
     String ementa,
     String objetivos,
+    ArrayList<Atividade> calendario,
     String metodologia,
     String atividadesDiscentes,
     String sistemaAvaliacao,
@@ -138,6 +145,7 @@ public class Model {
         justificativa,
         ementa,
         objetivos,
+        calendario,
         metodologia,
         atividadesDiscentes,
         sistemaAvaliacao,
@@ -146,10 +154,6 @@ public class Model {
     addPed(ped);
 }
 
-    /*public void removePed(String codigo) {
-        if(peds.get(codigo) != null) {peds.remove(codigo);}
-    }*/
-
     public void removePed(Ped ped) {
         peds.remove(ped);
     }
@@ -157,9 +161,6 @@ public class Model {
     public ArrayList<Ped> getPeds() {
         return peds;
     }
-
-    //public Ped getPed(String codigo) {return peds.get(codigo);} //retorna um ped especifico
-    //public int getTotalPeds() {return peds.size();}
 
     /*
      *metodos envolvendo observers

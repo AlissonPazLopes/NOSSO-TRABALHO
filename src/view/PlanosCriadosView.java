@@ -79,7 +79,7 @@ public class PlanosCriadosView implements Observer {
 
     public void exibirDetalhes(Ped ped) {
         System.out.println("===== Detalhes do Plano de Ensino =====");
-        System.out.println("Disciplina: " + ped.getDisciplina().getNome());
+        System.out.println("\nDisciplina: " + ped.getDisciplina().getNome());
         System.out.println("Código: " + ped.getDisciplina().getCodigo());
         System.out.println("Professor: " + ped.getProfessor().getNome());
         System.out.println("Caráter: " + ped.getCarater());
@@ -88,6 +88,14 @@ public class PlanosCriadosView implements Observer {
         System.out.println("Justificativa: " + ped.getJustificativa());
         System.out.println("Ementa: " + ped.getEmenta());
         System.out.println("Objetivos: " + ped.getObjetivos());
+
+        System.out.println("\n============= Calendario de Atividades =============");
+        System.out.println();
+        for(Atividade atividade: ped.getCalendario()) {
+            System.out.print(atividade.getData() + " - " + atividade.getDescricao() + " - " + atividade.getCargaHoraria());
+        }
+        System.out.println();
+
         System.out.println("Metodologia: " + ped.getMetodologia());
         System.out.println("Atividades Discentes: " + ped.getAtividadesDiscentes());
         System.out.println("Sistema de Avaliação: " + ped.getSistemaAvaliacao());

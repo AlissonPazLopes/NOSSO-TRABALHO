@@ -1,18 +1,19 @@
 package view;
 
-import model.Model;
-import model.Professor;
-import model.Disciplina;
-import model.Ped;
+import model.*;
+
+import java.util.ArrayList;
 
 public class CriarPlanoController implements Observer {
     private Model model;
     private CriarPlanoView view;
+    private ArrayList<Atividade> calendario;
 
     public void init(Model model, CriarPlanoView view) {
         if (model != null && view != null) {
             this.model = model;
             this.view = view;
+            this.calendario = model.criarCalendario(view.getDatas(), view.getDescricoes(), view.getHoras());
             model.attachObserver(this);
         }
     }
@@ -30,13 +31,14 @@ public class CriarPlanoController implements Observer {
                     view.getRequisitos(), 
                     view.getJustificativa(), 
                     view.getEmenta(),
-                    view.getObjetivos(), 
+                    view.getObjetivos(),
+                    this.calendario,
                     view.getMetodologia(), 
                     view.getAtividadesDiscentes(),
                     view.getSistemaAvaliacao(), 
                     view.getBibliografia()
                 );
-                view.exibirMsg("Plano criado com sucesso! Para adicionar o calendario de atividades, va em 'Ver Planos de Ensino Criados'");
+                view.exibirMsg("Plano criado com sucesso!");
                 HomeProfessorView viewHP = new HomeProfessorView();
                 viewHP.init(model);
                 model.detachObserver(this);

@@ -27,8 +27,9 @@ public class Ped {
         String requisitos, 
         String justificativa, 
         String ementa,
-        String objetivos, 
-        String metodologia, 
+        String objetivos,
+        ArrayList<Atividade> calendario,
+        String metodologia,
         String atividadesDiscentes,
         String sistemaAvaliacao, 
         String bibliografia
@@ -43,6 +44,7 @@ public class Ped {
             setJustificativa(justificativa);
             setEmenta(ementa);
             setObjetivos(objetivos);
+            setCalendario(calendario);
             setMetodologia(metodologia);
             setAtividadesDiscentes(atividadesDiscentes);
             setSistemaAvaliacao(sistemaAvaliacao);
@@ -129,6 +131,14 @@ public class Ped {
             this.objetivos = objetivos;
         }
     }
+
+    public void setCalendario(ArrayList<Atividade> calendario){
+        if(calendario != null) {
+            this.calendario = calendario;
+        }
+    }
+
+    public ArrayList<Atividade> getCalendario() {return calendario;}
 
     public String getObjetivos() {
         return objetivos;
