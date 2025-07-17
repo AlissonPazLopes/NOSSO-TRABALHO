@@ -27,6 +27,7 @@ public class RegisterView implements Observer {
         Scanner sc = new Scanner(System.in);
         String[] opcoes = {"1 - Aluno", "2 - Professor"};
 
+        System.out.println();
         System.out.println("""
         ================================================
                            Cadastro
@@ -45,6 +46,7 @@ public class RegisterView implements Observer {
                 "EM - Engenharia Mecânica",
                 "EP - Engenharia de Produção"
             };
+            System.out.println("\nCursos:");
             for(String c : cursos) {
                 System.out.println(c);
             }

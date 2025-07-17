@@ -31,7 +31,7 @@ public class PlanosCriadosView implements Observer {
             }
         }
         if(pedsProfessor.isEmpty()) {
-            System.out.println("Você não possui Planos de Ensino criados.");
+            System.out.println("Você não possui Planos de Ensino criados.\n");
             controller.handleEvent("VOLTAR");
             return;
         } else {

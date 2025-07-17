@@ -41,19 +41,22 @@ public class CriarPlanoView implements Observer {
         String cargas[] = {"1 - 32 horas", "2 - 64 horas"};
         String resposta;
         do {
+            System.out.println();
             System.out.println("""
             =================================================
             ||             Criar Plano de Ensino          ||         
             =================================================
             """);
-            System.out.println("Digite o nome da disciplina: ");
+            System.out.print("Digite o nome da disciplina: ");
             disciplina = sc.nextLine();
-            System.out.println("Digite o codigo da disciplina: ");
+            System.out.print("Digite o codigo da disciplina: ");
             codigo = sc.nextLine();
 
+            System.out.println("\nCarater da disciplina: ");
             System.out.println(tiposCarater[0]);
             System.out.println(tiposCarater[1]);
-            System.out.println("Escolha o carater da disciplina: ");
+            System.out.println();
+            System.out.print("Escolha o carater da disciplina: ");
             String caraterOpcao = sc.nextLine();
             if (caraterOpcao.equals("1")) {
             carater = CaraterDisciplina.OBRIGATORIA;
@@ -61,9 +64,11 @@ public class CriarPlanoView implements Observer {
             carater = CaraterDisciplina.OPTATIVA;
             }
             System.out.println();
+            System.out.println("Carga Horaria:");
             System.out.println(cargas[0]);
             System.out.println(cargas[1]);
-            System.out.println("Escolha a carga horaria da disciplina: ");
+            System.out.println();
+            System.out.print("Escolha a carga horaria da disciplina: ");
             String cargaOpcao = sc.nextLine();
             if (cargaOpcao.equals("1")) {
             cargaHoraria = CargaHoraria.HORAS_32;
@@ -79,8 +84,6 @@ public class CriarPlanoView implements Observer {
             ementa = sc.nextLine();
             System.out.println("Digite os objetivos da disciplina: ");
             objetivos = sc.nextLine();
-            System.out.println("Digite a metodologia da disciplina: ");
-            metodologia = sc.nextLine();
 
             int contAtividades = 1;
             System.out.println("\n======== Criacao do Calendario de Atividades =======");
@@ -96,6 +99,18 @@ public class CriarPlanoView implements Observer {
                 int tempo = sc.nextInt();
                 sc.nextLine(); // corrige erro de pular algumas entradas
 
+                if(data == null || data.isEmpty() || descricao == null || descricao.isEmpty()){
+                    System.out.println("\nData ou descricao estao vazias! Refaca a atividade.");
+                    continue;
+                }
+
+                if(horasCriadas + tempo > cargaHoraria.getHoras()){
+                    System.out.println("\nA quantidade de horas ultrapassou o limite. Refaca a ultima atividade." +
+                                        "\nSe voce errou em uma ativade anterior e possivel editar posteriormente. ");
+
+                    continue;
+                }
+
                 datas.add(data);
                 descricoes.add(descricao);
                 horas.add(tempo);
@@ -104,7 +119,9 @@ public class CriarPlanoView implements Observer {
                 contAtividades++;
             } while(horasCriadas < cargaHoraria.getHoras());
 
-            System.out.println("\nDigite as atividades discentes: ");
+            System.out.println("\nDigite a metodologia da disciplina: ");
+            metodologia = sc.nextLine();
+            System.out.println("Digite as atividades discentes: ");
             atividadesDiscentes = sc.nextLine();
             System.out.println("Informe o sistema de avaliacao da disciplina: ");
             sistemaAvaliacao = sc.nextLine();
@@ -115,7 +132,7 @@ public class CriarPlanoView implements Observer {
                 "\nNome: " + disciplina +
                 "\nCodigo: " + codigo +
                 "\nCarater: " + carater +
-                "\nCargaHoraria" + cargaHoraria +
+                "\nCargaHoraria" + cargaHoraria.getHoras() +
                 "\nRequisitos: " + requisitos +
                 "\nJustificativa: " + justificativa +
                 "\nEmenta: " + ementa +
@@ -135,7 +152,7 @@ public class CriarPlanoView implements Observer {
                 "\nBibliografia: " + bibliografia
             );
 
-            System.out.println("Os dados estao corretos? (S/N)");
+            System.out.println("\nOs dados estao corretos? (S/N)");
             resposta = sc.nextLine().trim().toUpperCase();
         } while (resposta.equals("N"));
         controller.handleEvent("OK");

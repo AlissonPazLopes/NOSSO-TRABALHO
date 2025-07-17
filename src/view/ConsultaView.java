@@ -86,7 +86,6 @@ public class ConsultaView implements Observer {
         System.out.println("Justificativa: " + ped.getJustificativa());
         System.out.println("Ementa: " + ped.getEmenta());
         System.out.println("Objetivos: " + ped.getObjetivos());
-        System.out.println();
 
         System.out.println("\n============= Calendario de Atividades =============");
         System.out.println();

@@ -19,6 +19,7 @@ public class LoginView implements Observer {
 
     public void logarUsuario() {
         Scanner sc = new Scanner(System.in);
+        System.out.println();
         System.out.println("""
         ================================================
                            Login
