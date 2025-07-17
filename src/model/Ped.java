@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Ped {
     private String codigo;
     private Professor professor;
+    private String curso;
     private Disciplina disciplina;
     private CaraterDisciplina carater;
     private CargaHoraria cargaHoraria;
@@ -21,6 +22,7 @@ public class Ped {
     public Ped(
         String codigo,
         Professor professor,
+        String curso,
         Disciplina disciplina, 
         CaraterDisciplina carater, 
         CargaHoraria cargaHoraria,
@@ -37,6 +39,7 @@ public class Ped {
             super();
             setCodigo(codigo);
             setProfessor(professor);
+            setCurso(curso);
             setDisciplina(disciplina);
             setCarater(carater);
             setCargaHoraria(cargaHoraria);
@@ -63,6 +66,14 @@ public class Ped {
 
     public Professor getProfessor() {
         return professor;
+    }
+
+    public void setCurso(String curso) {
+        if(curso != null) this.curso = curso;
+    }
+
+    public String getCurso() {
+        return curso;
     }
 
     public void setDisciplina(Disciplina disciplina) {

@@ -6,6 +6,7 @@ import model.*;
 public class CriarPlanoView implements Observer {
     private Model model;
     private CriarPlanoController controller;
+    private String curso;
     private String disciplina;
     private String codigo;
     private CaraterDisciplina carater;
@@ -37,6 +38,13 @@ public class CriarPlanoView implements Observer {
 
         int horasCriadas = 0;
 
+        String[] cursos = {
+                "CC - Ciencia da computacao",
+                "ES - Engenharia de Software",
+                "EC - Engenharia Civil",
+                "EM - Engenharia Mecânica",
+                "EP - Engenharia de Produção"
+            };
         String tiposCarater[] = {"1 - Obrigatoria", "2 - Optativa"};
         String cargas[] = {"1 - 32 horas", "2 - 64 horas"};
         String resposta;
@@ -47,6 +55,14 @@ public class CriarPlanoView implements Observer {
             ||             Criar Plano de Ensino          ||         
             =================================================
             """);
+            
+            System.out.println("\nCursos:");
+            for(String c : cursos) {
+                System.out.println(c);
+            }
+
+            System.out.print("Informe a sigla do curso para o qual este plano é destinado: ");
+            curso = sc.nextLine();
             System.out.print("Digite o nome da disciplina: ");
             disciplina = sc.nextLine();
             System.out.print("Digite o codigo da disciplina: ");
@@ -164,6 +180,9 @@ public class CriarPlanoView implements Observer {
     public ArrayList<String> getDescricoes() {return descricoes;}
     public ArrayList<Integer> getHoras() {return horas;}
 
+    public String getCurso() {
+        return curso;
+    }
 
     public String getDisciplina() {
         return disciplina;

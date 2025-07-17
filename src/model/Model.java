@@ -121,6 +121,7 @@ public class Model {
     public void cadastrarPed(
     String codigo,
     Professor professor,
+    String curso,
     String nomeDisciplina,
     CaraterDisciplina carater,
     CargaHoraria cargaHoraria,
@@ -138,6 +139,7 @@ public class Model {
     Ped ped = new Ped(
         codigo,
         professor,
+        curso,
         disciplina,
         carater,
         cargaHoraria,

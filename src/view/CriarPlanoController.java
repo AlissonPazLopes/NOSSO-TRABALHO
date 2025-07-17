@@ -25,6 +25,7 @@ public class CriarPlanoController implements Observer {
                 model.cadastrarPed(
                     view.getCodigo(),
                     professor,
+                    view.getCurso(),
                     view.getDisciplina(),
                     view.getCarater(),
                     view.getCargaHoraria(),
