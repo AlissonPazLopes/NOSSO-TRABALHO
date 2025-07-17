@@ -24,6 +24,9 @@ public class SugestoesController implements Observer {
                 HomeAlunoView viewHA = new HomeAlunoView();
                 viewHA.init(model);
                 break;
+            case "VOLTAR_SUGESTOES":
+                view.menuSugestoes();
+                break;
             default:
                 if(event.startsWith("DETALHES:")) {
                     int index = Integer.parseInt(event.split(":")[1]);
@@ -38,7 +41,7 @@ public class SugestoesController implements Observer {
                     if(index >= 0 && index < sugestoes.size()) {
                         Ped pedEscolhido = sugestoes.get(index);
                         view.exibirDetalhes(pedEscolhido);
-                        view.menuSugestoes();
+                        view.opcoesAposDetalhes();
                     } else {
                         handleEvent("VOLTAR");
                     }

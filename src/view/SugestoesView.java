@@ -23,7 +23,7 @@ public class SugestoesView implements Observer {
 
         System.out.println("""
             =================================================
-            ||             Sugestoes de Planos de Ensino   ||
+            ||        Sugestoes de Planos de Ensino        ||
             =================================================
             """);
 
@@ -80,6 +80,19 @@ public class SugestoesView implements Observer {
         System.out.println("Sistema de Avaliação: " + ped.getSistemaAvaliacao());
         System.out.println("Bibliografia: " + ped.getBibliografia());    
     }
+
+    public void opcoesAposDetalhes() {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("\nO que deseja fazer?");
+    System.out.println("0 - Voltar para sugestoes");
+    System.out.println("1 - Voltar ao menu principal");
+    String opcao = sc.nextLine();
+    if (opcao.equals("0")) {
+        controller.handleEvent("VOLTAR_SUGESTOES");
+    } else {
+        controller.handleEvent("VOLTAR");
+    }
+}
 
     public void update() {}
 }
