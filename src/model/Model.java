@@ -162,6 +162,7 @@ public class Model {
 
     public void removePed(Ped ped) {
         peds.remove(ped);
+        notifica();
     }
 
     public ArrayList<Ped> getPeds() {
