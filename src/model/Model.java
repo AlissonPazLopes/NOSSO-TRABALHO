@@ -52,6 +52,10 @@ public class Model {
         setUsuario(professor);
     }
 
+    public void atualizaUsuario(Usuario usuario) {
+        usuarioAutenticado = usuario;
+        notifica();
+    }
 
     public void removeUsuario(String login) {usuarios.remove(login);}
 

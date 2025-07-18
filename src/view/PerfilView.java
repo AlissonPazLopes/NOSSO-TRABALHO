@@ -57,8 +57,11 @@ public class PerfilView implements Observer {
     }
 
     public void exibirMsg(String msg) {
+        System.out.println();
         System.out.print(msg);
     }
+
+    public void encerrar() {model.detachObserver(this);}
 
     public void update() {}
 }

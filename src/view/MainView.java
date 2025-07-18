@@ -6,6 +6,7 @@ import model.*;
 public class MainView implements Observer {
     private Model model;
     private MainController controller;
+    private int totalUsuarios;
     private boolean finalizar = false;
 
     public void finalizarSistema() {
@@ -34,6 +35,7 @@ public class MainView implements Observer {
 
             Escolha uma opção:
             """);
+            System.out.println("Total de usuarios: " + totalUsuarios + "\n");
             System.out.println(opcoes[0]);
             System.out.println(opcoes[1]);
             System.out.println(opcoes[2]);
@@ -43,8 +45,5 @@ public class MainView implements Observer {
         } while(!finalizar);
     }
 
-
-  public void update() {
-    
-  }
+    public void update() {totalUsuarios = model.getTotalUsuarios();}
 }
