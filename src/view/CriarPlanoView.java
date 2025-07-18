@@ -3,8 +3,6 @@ package view;
 import java.util.*;
 import model.*;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-
 public class CriarPlanoView implements Observer {
     private Model model;
     private CriarPlanoController controller;
