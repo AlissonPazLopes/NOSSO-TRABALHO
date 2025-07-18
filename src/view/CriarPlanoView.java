@@ -3,6 +3,8 @@ package view;
 import java.util.*;
 import model.*;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+
 public class CriarPlanoView implements Observer {
     private Model model;
     private CriarPlanoController controller;
@@ -46,7 +48,7 @@ public class CriarPlanoView implements Observer {
                 "EP - Engenharia de Produção"
             };
         String tiposCarater[] = {"1 - Obrigatoria", "2 - Optativa"};
-        String cargas[] = {"1 - 32 horas", "2 - 64 horas"};
+        String cargas[] = {"1 - 32 horas", "2 - 64 horas", "3 - 96 horas", "4 - 160 horas"};
         String resposta;
         do {
             System.out.println();
@@ -83,6 +85,9 @@ public class CriarPlanoView implements Observer {
             System.out.println("Carga Horaria:");
             System.out.println(cargas[0]);
             System.out.println(cargas[1]);
+            System.out.println(cargas[2]);
+            System.out.println(cargas[3]);
+
             System.out.println();
             System.out.print("Escolha a carga horaria da disciplina: ");
             String cargaOpcao = sc.nextLine();
@@ -90,6 +95,10 @@ public class CriarPlanoView implements Observer {
             cargaHoraria = CargaHoraria.HORAS_32;
             } else if (cargaOpcao.equals("2")) {
             cargaHoraria = CargaHoraria.HORAS_64;
+            } else if (cargaOpcao.equals("3")) {
+                cargaHoraria = CargaHoraria.HORAS_96;
+            }  else if(cargaOpcao.equals("4")){
+                cargaHoraria = CargaHoraria.HORAS_160;
             }
             System.out.println();
             System.out.println("Digite os requisitos da disciplina (se houver): ");
