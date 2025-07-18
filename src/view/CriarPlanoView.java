@@ -15,6 +15,9 @@ public class CriarPlanoView implements Observer {
     private String justificativa;
     private String ementa;
     private String objetivos;
+    private ArrayList<String> datas = new ArrayList<>();
+    private ArrayList<String> descricoes = new ArrayList<>();
+    private ArrayList<Integer> horas = new ArrayList<>();
     private String metodologia;
     private String atividadesDiscentes;
     private String sistemaAvaliacao;
@@ -26,14 +29,11 @@ public class CriarPlanoView implements Observer {
         controller.init(model, this);
         model.attachObserver(this);
         menuCriarPlano();
-    }
-
-    //dados das atividades
-    ArrayList<String> datas = new ArrayList<>();
-    ArrayList<String> descricoes = new ArrayList<>();
-    ArrayList<Integer> horas = new ArrayList<>();
+    } 
 
     public void menuCriarPlano() {
+        Professor professor = (Professor) model.getUsuarioAutenticado();
+        ArrayList<Disciplina> disciplinasProf = new ArrayList<>(professor.getDisciplinas().values());
         Scanner sc = new Scanner(System.in);
 
         int horasCriadas = 0;
@@ -62,11 +62,30 @@ public class CriarPlanoView implements Observer {
             }
 
             System.out.print("Informe a sigla do curso para o qual este plano é destinado: ");
-            curso = sc.nextLine();
-            System.out.print("Digite o nome da disciplina: ");
+            curso = sc.nextLine().toUpperCase();
+            /*System.out.print("Digite o nome da disciplina: ");
             disciplina = sc.nextLine();
             System.out.print("Digite o codigo da disciplina: ");
-            codigo = sc.nextLine();
+            codigo = sc.nextLine();*/
+            System.out.println("Disciplinas ministradas:");
+            for(int i = 0; i < disciplinasProf.size(); i++) {
+                Disciplina d = disciplinasProf.get(i);
+                System.out.printf("%d - %s (Código: %s)\n", i+1, d.getNome(), d.getCodigo());
+            }
+            int escolha = -1;
+            do {
+                System.out.print("Escolha o numero da disciplina para o qual deseja criar o plano: ");
+                try {
+                    escolha = Integer.parseInt(sc.nextLine()); // sem usar nextInt() para evitar problemas com o buffer
+                } catch(NumberFormatException e) {
+                    escolha = -1; // Força a repetição do loop se a entrada não for um número
+                }
+            } while(escolha < 1 || escolha > disciplinasProf.size());
+
+            Disciplina disciplinaEscolhida = disciplinasProf.get(escolha - 1);
+
+            disciplina = disciplinaEscolhida.getNome();
+            codigo = disciplinaEscolhida.getCodigo();
 
             System.out.println("\nCarater da disciplina: ");
             System.out.println(tiposCarater[0]);
@@ -156,7 +175,7 @@ public class CriarPlanoView implements Observer {
                 "\nNome: " + disciplina +
                 "\nCodigo: " + codigo +
                 "\nCarater: " + carater +
-                "\nCargaHoraria" + cargaHoraria.getHoras() +
+                "\nCarga Horaria: " + cargaHoraria.getHoras() + " horas" +
                 "\nRequisitos: " + requisitos +
                 "\nJustificativa: " + justificativa +
                 "\nEmenta: " + ementa +

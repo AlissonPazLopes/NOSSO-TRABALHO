@@ -84,7 +84,7 @@ public class PlanosCriadosView implements Observer {
         System.out.println("Curso: " + ped.getCurso());
         System.out.println("Professor: " + ped.getProfessor().getNome());
         System.out.println("Caráter: " + ped.getCarater());
-        System.out.println("Carga Horária: " + ped.getCargaHoraria());
+        System.out.println("Carga Horária: " + ped.getCargaHoraria().getHoras() + " horas");
         System.out.println("Requisitos: " + ped.getRequisitos());
         System.out.println("Justificativa: " + ped.getJustificativa());
         System.out.println("Ementa: " + ped.getEmenta());

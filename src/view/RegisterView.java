@@ -51,7 +51,7 @@ public class RegisterView implements Observer {
                 System.out.println(c);
             }
             System.out.print("\nEscolha a sigla do seu curso: ");
-            curso = sc.nextLine();
+            curso = sc.nextLine().toUpperCase();
 
             System.out.print("Digite sua matricula: ");
             matricula = sc.nextLine();
