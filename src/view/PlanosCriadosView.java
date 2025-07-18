@@ -37,8 +37,8 @@ public class PlanosCriadosView implements Observer {
         } else {
             int i = 1;
             for(Ped ped : pedsProfessor) {
-                System.out.printf("%d - Disciplina: %s | Código: %s\n",
-                    i++, ped.getDisciplina().getNome(), ped.getDisciplina().getCodigo());
+                System.out.printf("%d - Disciplina: %s | Curso: %s | Código: %s\n",
+                    i++, ped.getDisciplina().getNome(), ped.getCurso(), ped.getDisciplina().getCodigo());
             }
         }
         System.out.println("Escolha o número do Plano de Ensino para ver detalhes (ou digite 0 para voltar): ");
@@ -81,6 +81,7 @@ public class PlanosCriadosView implements Observer {
         System.out.println("===== Detalhes do Plano de Ensino =====");
         System.out.println("\nDisciplina: " + ped.getDisciplina().getNome());
         System.out.println("Código: " + ped.getDisciplina().getCodigo());
+        System.out.println("Curso: " + ped.getCurso());
         System.out.println("Professor: " + ped.getProfessor().getNome());
         System.out.println("Caráter: " + ped.getCarater());
         System.out.println("Carga Horária: " + ped.getCargaHoraria());

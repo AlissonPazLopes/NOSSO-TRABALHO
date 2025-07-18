@@ -145,6 +145,7 @@ public class CriarPlanoView implements Observer {
             bibliografia = sc.nextLine();
 
             System.out.println(
+                "\nCurso: " + curso +
                 "\nNome: " + disciplina +
                 "\nCodigo: " + codigo +
                 "\nCarater: " + carater +
