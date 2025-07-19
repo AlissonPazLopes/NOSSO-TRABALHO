@@ -62,17 +62,20 @@ public class PlanosCriadosView implements Observer {
             System.out.println("2 - Remover o Plano de ensino");
             System.out.println("0 - Voltar");
             String opcao = sc.nextLine();
-            if(opcao.equals("1")) {
-                controller.handleEvent("EDITAR:" + ped.getDisciplina().getCodigo());
-                return;
-            } else if(opcao.equals("2")) {
-                controller.handleEvent("REMOVER:" + ped.getDisciplina().getCodigo());
-                return;
-            } else if(opcao.equals("0")) {
-                controller.handleEvent("VOLTAR");
-                return;
-            } else {
-                System.out.println("Opção inválida.");
+            switch (opcao) {
+                case "1" -> {
+                    controller.handleEvent("EDITAR:" + ped.getDisciplina().getCodigo());
+                    return;
+                }
+                case "2" -> {
+                    controller.handleEvent("REMOVER:" + ped.getDisciplina().getCodigo());
+                    return;
+                }
+                case "0" -> {
+                    controller.handleEvent("VOLTAR");
+                    return;
+                }
+                default -> System.out.println("Opção inválida.");
             }
         }
     }
