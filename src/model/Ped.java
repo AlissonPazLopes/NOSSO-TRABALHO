@@ -105,8 +105,9 @@ public class Ped {
     public void setRequisitos(String requisitos) {
         if(requisitos == null) {
             this.requisitos = "";
+        } else {
+            this.requisitos = requisitos;
         }
-        this.requisitos = requisitos;
     }
 
     public String getRequisitos() {
