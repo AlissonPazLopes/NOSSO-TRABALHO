@@ -55,6 +55,13 @@ public class RegisterView implements Observer {
 
             System.out.print("Digite sua matricula: ");
             matricula = sc.nextLine();
+
+            if(model.getAlunoPorMatricula(matricula) != null) {
+                System.out.println("Já existe um aluno cadastrado com essa matricula!");
+                model.detachObserver(this);
+                return;
+            }
+
         } else if(tipoUsuario.equals("2")) {
             String resposta;
             do {

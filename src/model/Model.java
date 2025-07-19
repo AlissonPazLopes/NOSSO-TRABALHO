@@ -45,6 +45,20 @@ public class Model {
         setUsuario(aluno);
     }
 
+    //retorna um aluno com base na matricula
+    public Aluno getAlunoPorMatricula(String matricula) {
+        for (Usuario usuario : usuarios.values()) {
+            if (usuario instanceof Aluno) {
+                Aluno aluno = (Aluno) usuario;
+                if (String.valueOf(aluno.getMatricula()).equals(matricula)) {
+                    return aluno;
+                }
+            }
+        }
+        return null;
+    }
+
+
     //cria e adiciona um professor
     public void setUsuario(String nome, String login, String senha, ArrayList<Disciplina> disciplinas){
         Professor professor = new Professor(nome, login, senha, disciplinas);
