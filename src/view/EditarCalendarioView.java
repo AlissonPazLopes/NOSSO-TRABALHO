@@ -29,7 +29,6 @@ public class EditarCalendarioView implements Observer{
             =================================================
             """);
 
-        System.out.println();
         System.out.println("0 - Sair");
         int i = 1;
         for(Atividade atividade : calendario) {
@@ -38,7 +37,7 @@ public class EditarCalendarioView implements Observer{
         }
 
         System.out.println(i + " - Adicionar atividade");
-        System.out.println("\nEscolha sair[0], remover uma atividade ou adicionar[" + i + "]");
+        System.out.println("\nEscolha sair[0], remover uma atividade[numero da atividade] ou adicionar[" + i + "]: " );
         int opcao = sc.nextInt();
         sc.nextLine();
         controller.handleEvent(opcao, i);
