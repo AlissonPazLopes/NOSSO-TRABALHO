@@ -45,6 +45,30 @@ public class Main {
 
 
 
+        ArrayList<Atividade> calendario = new ArrayList<>();
+        calendario.add(new Atividade("20/10", "aula 1", 8));
+        calendario.add(new Atividade("22/10", "aula 2", 8));
+        calendario.add(new Atividade("24/10", "aula 3", 8));
+        calendario.add(new Atividade("26/10", "aula 4", 8));
+
+        Model.getInstancia().cadastrarPed(
+                "RUS123",
+                felipe,
+                "Ciência da Computação",
+                "Algebra Linear",
+                CaraterDisciplina.OBRIGATORIA,
+                CargaHoraria.HORAS_32,
+                "requisitos",
+                "justificativa",
+                "ementa",
+                "objetivos",
+                calendario,
+                "metodologia",
+                "atividadesDiscentes",
+                "sistemaAvaliacao",
+                "bibliografia"
+        );
+        
         Model model = Model.getInstancia();
         MainView view = new MainView();
         view.init(model);

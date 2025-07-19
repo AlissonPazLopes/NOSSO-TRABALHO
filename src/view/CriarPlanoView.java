@@ -55,26 +55,32 @@ public class CriarPlanoView implements Observer {
             ||             Criar Plano de Ensino          ||         
             =================================================
             """);
-            
-            System.out.println("\nCursos:");
-            for(String c : cursos) {
-                System.out.println(c);
-            }
 
-            System.out.print("Informe a sigla do curso para o qual este plano é destinado: ");
-            curso = sc.nextLine().toUpperCase();
-            /*System.out.print("Digite o nome da disciplina: ");
-            disciplina = sc.nextLine();
-            System.out.print("Digite o codigo da disciplina: ");
-            codigo = sc.nextLine();*/
-            System.out.println("\nDisciplinas ministradas:");
+            boolean continuar = true;
+            do {
+
+                System.out.println("Cursos:\n");
+                for(String c : cursos) {
+                    System.out.println(c);
+                }
+
+                System.out.print("\nInforme a sigla do curso para o qual este plano é destinado: ");
+                curso = sc.nextLine().toUpperCase();
+                if(!curso.equals("CC") && !curso.equals("ES") && !curso.equals("EC") && !curso.equals("EM") && !curso.equals("EP")) {
+                    System.out.println("\nDigite um curso válido.\n");
+                    continue;
+                }
+                continuar = false;
+            } while(continuar);
+
+            System.out.println("\nDisciplinas ministradas:\n");
             for(int i = 0; i < disciplinasProf.size(); i++) {
                 Disciplina d = disciplinasProf.get(i);
                 System.out.printf("%d - %s (Código: %s)\n", i+1, d.getNome(), d.getCodigo());
             }
             int escolha = -1;
             do {
-                System.out.print("Escolha o numero da disciplina para o qual deseja criar o plano: ");
+                System.out.print("\nEscolha o numero da disciplina para o qual deseja criar o plano: ");
                 try {
                     escolha = Integer.parseInt(sc.nextLine()); // sem usar nextInt() para evitar problemas com o buffer
                 } catch(NumberFormatException e) {
@@ -100,7 +106,7 @@ public class CriarPlanoView implements Observer {
             }
             System.out.println();
 
-            boolean continuar = true;
+            continuar = true;
             do{
                 System.out.println("Carga Horaria:");
                 System.out.println(cargas[0]);
