@@ -36,7 +36,7 @@ public class MainView implements Observer {
 
             Escolha uma opção:
             """);
-            System.out.println("Total de usuarios: " + totalUsuarios + "\n");
+            System.out.println("Total de usuários: " + totalUsuarios + "\n");
             System.out.println(opcoes[0]);
             System.out.println(opcoes[1]);
             System.out.println(opcoes[2]);

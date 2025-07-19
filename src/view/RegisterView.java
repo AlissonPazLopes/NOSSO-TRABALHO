@@ -57,7 +57,7 @@ public class RegisterView implements Observer {
             matricula = sc.nextLine();
 
             if(model.getAlunoPorMatricula(matricula) != null) {
-                System.out.println("Já existe um aluno cadastrado com essa matricula!");
+                System.out.println("\nJá existe um aluno cadastrado com essa matricula!\n");
                 model.detachObserver(this);
                 return;
             }
@@ -81,6 +81,12 @@ public class RegisterView implements Observer {
             System.out.print("Digite seu login: ");
             login = sc.nextLine();
 
+            if(model.getUsuario(login) != null) {
+                System.out.println("\nJá existe um usuário cadastrado com esse login!\n");
+                model.detachObserver(this);
+                return;
+            }
+
             while (true) { // Loop infinito que só para com o 'break'
                 System.out.print("Digite sua senha: ");
                 this.senha = sc.nextLine();
@@ -103,11 +109,10 @@ public class RegisterView implements Observer {
             }
             model.detachObserver(this);
         } else {
-            System.out.println("\nEscolha uma opcao valida!\n");
+            System.out.println("\nEscolha uma opção válida!\n");
             model.detachObserver(this);
         }
     }
-
 
 
     public String getNome() {
@@ -138,8 +143,6 @@ public class RegisterView implements Observer {
         return disciplinas;
     }
 
-    public void update() {
-        
-    }
+    public void update() {}
 
 }
