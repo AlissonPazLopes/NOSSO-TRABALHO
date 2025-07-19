@@ -140,9 +140,9 @@ public class EditarPlanoView implements Observer {
             String novosObjetivos = sc.nextLine();
             if(!novosObjetivos.isEmpty()) objetivos = novosObjetivos;
 
-            System.out.println("Editar calendário[S/N]: ");
+            System.out.print("Editar calendário[S/N]: ");
             String novoCalendario = sc.nextLine().toUpperCase();
-            if(novoCalendario == "S"){
+            if(novoCalendario.equals("S")){
                 EditarCalendarioView view= new EditarCalendarioView();
                 view.init(model, ped);
             }

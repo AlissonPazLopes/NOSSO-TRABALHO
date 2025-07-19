@@ -193,9 +193,10 @@ public class Model {
         return peds;
     }
 
-    public void removeAtividade(Ped ped){
+    public void atualizaPed(Ped ped){
         String codigo = ped.getCodigo();
-        
+        peds.remove(codigo);
+        peds.add(ped);
     }
 
     /*

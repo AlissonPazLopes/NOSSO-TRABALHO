@@ -55,10 +55,12 @@ public class EditarCalendarioController implements Observer{
                 calendarioFinal.add(atividade);
                 for(Atividade atv: pedsTemporariosCauda) calendarioFinal.add(atv);
 
-
+                ped.setCalendario(calendarioFinal);
+                model.atualizaPed(ped);
             }
         } else if(event > 0 && event < chaveAdd){
-
+            ped.getCalendario().remove(event);
+            model.atualizaPed(ped);
         } else{
             view.exibirMsg("Opção inválida.");
             view.editarCalendario();
