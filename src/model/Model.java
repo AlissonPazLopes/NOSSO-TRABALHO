@@ -39,6 +39,17 @@ public class Model {
         }
     }
 
+    public Ped getPedPorCodigo(String codigo) {
+        if (codigo == null) return null;
+
+        for (Ped ped : peds) {
+            if (codigo.equals(ped.getCodigo())) {
+                return ped;
+            }
+        }
+        return null; // nenhum PED encontrado com esse código
+    }
+
     //cria e adiciona um aluno
     public void setUsuario(String nome, String login, String senha, int matricula, String curso){
         Aluno aluno = new Aluno(nome, login, senha, matricula, curso);
@@ -180,6 +191,11 @@ public class Model {
 
     public ArrayList<Ped> getPeds() {
         return peds;
+    }
+
+    public void removeAtividade(Ped ped){
+        String codigo = ped.getCodigo();
+        
     }
 
     /*

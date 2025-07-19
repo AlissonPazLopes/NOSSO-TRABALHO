@@ -192,5 +192,9 @@ public class Ped {
         return bibliografia;
     }
 
+    public Atividade getAtividade(int posicao) {
+        return calendario.get(posicao);
+    }
+
     
 }

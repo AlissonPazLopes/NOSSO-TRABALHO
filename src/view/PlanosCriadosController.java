@@ -42,9 +42,15 @@ public class PlanosCriadosController implements Observer {
                         handleEvent("VOLTAR");
                     }
                 } else if(event.startsWith("EDITAR:")) {
+                    String codigoPed = event.split(":")[1].trim();              // <<< trim() aqui
+                    Ped pedEscolhido = model.getPedPorCodigo(codigoPed);
+                    if (pedEscolhido == null) {
+                        view.exibirMsg("Erro: não encontrei o plano com código “" + codigoPed + "”.");
+                        return;
+                    }
                     model.detachObserver(this);
                     EditarPlanoView viewEP = new EditarPlanoView();
-                    viewEP.init(model);
+                    viewEP.init(model, pedEscolhido);
                 } else if(event.startsWith("REMOVER:")) {
                     String codigo = event.split(":")[1];
                     Professor professor = (Professor) model.getUsuarioAutenticado();
