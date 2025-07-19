@@ -67,7 +67,7 @@ public class CriarPlanoView implements Observer {
             disciplina = sc.nextLine();
             System.out.print("Digite o codigo da disciplina: ");
             codigo = sc.nextLine();*/
-            System.out.println("Disciplinas ministradas:");
+            System.out.println("\nDisciplinas ministradas:");
             for(int i = 0; i < disciplinasProf.size(); i++) {
                 Disciplina d = disciplinasProf.get(i);
                 System.out.printf("%d - %s (Código: %s)\n", i+1, d.getNome(), d.getCodigo());
@@ -99,24 +99,36 @@ public class CriarPlanoView implements Observer {
             carater = CaraterDisciplina.OPTATIVA;
             }
             System.out.println();
-            System.out.println("Carga Horaria:");
-            System.out.println(cargas[0]);
-            System.out.println(cargas[1]);
-            System.out.println(cargas[2]);
-            System.out.println(cargas[3]);
 
-            System.out.println();
-            System.out.print("Escolha a carga horaria da disciplina: ");
-            String cargaOpcao = sc.nextLine();
-            if (cargaOpcao.equals("1")) {
-            cargaHoraria = CargaHoraria.HORAS_32;
-            } else if (cargaOpcao.equals("2")) {
-            cargaHoraria = CargaHoraria.HORAS_64;
-            } else if (cargaOpcao.equals("3")) {
-                cargaHoraria = CargaHoraria.HORAS_96;
-            }  else if(cargaOpcao.equals("4")){
-                cargaHoraria = CargaHoraria.HORAS_160;
-            }
+            boolean continuar = true;
+            do{
+                System.out.println("Carga Horaria:");
+                System.out.println(cargas[0]);
+                System.out.println(cargas[1]);
+                System.out.println(cargas[2]);
+                System.out.println(cargas[3]);
+
+                System.out.println();
+                System.out.print("Escolha a carga horaria da disciplina: ");
+                String cargaOpcao = sc.nextLine();
+
+                if (cargaOpcao.equals("1")) {
+                    cargaHoraria = CargaHoraria.HORAS_32;
+                    continuar = false;
+                } else if (cargaOpcao.equals("2")) {
+                    cargaHoraria = CargaHoraria.HORAS_64;
+                    continuar = false;
+                } else if (cargaOpcao.equals("3")) {
+                    cargaHoraria = CargaHoraria.HORAS_96;
+                    continuar = false;
+                } else if (cargaOpcao.equals("4")) {
+                    cargaHoraria = CargaHoraria.HORAS_160;
+                    continuar = false;
+                } else{
+                    System.out.println("\nOpcao invalida!\n");
+                }
+            } while(continuar);
+
             System.out.println();
             System.out.println("Digite os requisitos da disciplina (se houver): ");
             requisitos = sc.nextLine();
