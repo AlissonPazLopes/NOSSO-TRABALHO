@@ -193,6 +193,11 @@ public class Model {
         return peds;
     }
 
+    public void removeAtividade(Ped ped){
+        String codigo = ped.getCodigo();
+        
+    }
+
     /*
      *metodos envolvendo observers
      */
