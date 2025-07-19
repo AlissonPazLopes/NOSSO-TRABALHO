@@ -19,7 +19,7 @@ public class PerfilController implements Observer {
     }
 
     public void handleEvent(int event) {
-        Scanner sc = new Scanner(System.in);
+        int opcoesBase = (usuario instanceof Aluno) ? 6 : 4;
         switch(event) {
             case 0:
                 if(model.getUsuarioAutenticado() instanceof Aluno){
@@ -36,23 +36,20 @@ public class PerfilController implements Observer {
                     break;
                 }
             case 1:
-                this.view.exibirMsg("Novo nome: ");
-                String nome = sc.nextLine();
+                String nome = view.solicitarNovoNome();
                 usuario.setNome(nome);
                 model.atualizaUsuario(usuario);
                 view.verPerfil();
                 break;
             case 2:
-                this.view.exibirMsg("Novo login: ");
-                String login = sc.nextLine();
+                String login = view.solicitarNovoLogin();
                 String loginAntigo = usuario.getLogin();
                 usuario.setLogin(login);
                 model.atualizaUsuario(usuario, loginAntigo);
                 view.verPerfil();
                 break;
             case 3:
-                this.view.exibirMsg("Nova senha: ");
-                String senha = sc.nextLine();
+                String senha = view.solicitarNovaSenha();
                 usuario.setSenha(senha);
                 model.atualizaUsuario(usuario);
                 view.verPerfil();
@@ -60,48 +57,47 @@ public class PerfilController implements Observer {
             case 4:
                 if(usuario instanceof Aluno){
                     Aluno u = (Aluno) usuario;
-                    this.view.exibirMsg("Nova matricula: ");
-                    int matricula = sc.nextInt();
+                    int matricula = view.solicitarNovaMatricula();
                     u.setMatricula(matricula);
                     model.atualizaUsuario(u);
                     view.verPerfil();
-                    break;
-                } else break;
+                } 
+                break;
             case 5:
                 if(usuario instanceof Aluno){
                     Aluno u = (Aluno) usuario;
-                    this.view.exibirMsg("Novo curso: ");
-                    String curso = sc.nextLine();
+                    String curso = view.solicitarNovoCurso();
                     u.setCurso(curso);
                     model.atualizaUsuario(u);
                     view.verPerfil();
-                    break;
-                } else break;
+                } 
+                break;
             default:
-                view.exibirMsg("Escolha uma opcao valida!\n\n");
-                view.verPerfil();
+                if(!(usuario instanceof Professor && event >= opcoesBase)) {
+                    view.exibirMsg("Escolha uma opcao valida!\n\n");
+                    view.verPerfil();
+                }
                 break;
         }
 
-        if(usuario instanceof Professor && event >= 4) {
+        if(usuario instanceof Professor && event >= opcoesBase) {
             Professor u = (Professor) usuario;
-            if(event == u.getChaveAddDisciplina()){
-                view.exibirMsg("Escreva o nome da disciplina: ");
-                String nome = sc.nextLine();
-                view.exibirMsg("Escreva o codigo da disciplina: ");
-                String codigo = sc.nextLine();
+            int indiceAdicionar = opcoesBase + u.getTotalDisciplinas();
+            if(event == indiceAdicionar) {
+                String nome = view.solicitarNomeDisciplina();
+                String codigo = view.solicitarCodigoDisciplina();
                 u.setDisciplina(nome, codigo);
                 model.atualizaUsuario(u);
             } else {
-                int i = event - 3;
-                int j = 1;
+                int indiceRemover = event - opcoesBase;
+                int c = 0;
                 for (Disciplina disciplina : u.getDisciplinas().values()) {
-                    if (j == i) {
+                    if (c == indiceRemover) {
                         u.removeDisciplina(disciplina);
                         model.atualizaUsuario(u);
                         break;
                     }
-                    j++;
+                    c++;
                 }
             }
             view.verPerfil();

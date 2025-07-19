@@ -30,13 +30,12 @@ public class PerfilView implements Observer {
         else{
             Professor professor = (Professor) usuarioAutenticado;
             int proximoNumeroOpcao = opcoes.size();
-            for(int i = 0; i <= professor.getTotalDisciplinas(); i++){
-                if(i == professor.getTotalDisciplinas()) opcoes.add(proximoNumeroOpcao + " - Adicionar disciplina");
-                else {
-                    opcoes.add(proximoNumeroOpcao + " - Remover disciplina");
-                    proximoNumeroOpcao++;
-                }
+            int index = 0;
+            for(Disciplina disciplina : professor.getDisciplinas().values()) {
+                opcoes.add((proximoNumeroOpcao + index) + " - Remover disciplina " + disciplina.getNome());
+                index++;
             }
+            opcoes.add((proximoNumeroOpcao + index) + " - Adicionar disciplina");
         }
 
         System.out.println("""
@@ -59,6 +58,48 @@ public class PerfilView implements Observer {
     public void exibirMsg(String msg) {
         System.out.println();
         System.out.print(msg);
+    }
+
+    public String solicitarNovoNome() {
+        System.out.print("Novo nome: ");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
+
+    public String solicitarNovoLogin() {
+        System.out.print("Novo login: ");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
+
+    public String solicitarNovaSenha() {
+        System.out.print("Nova senha: ");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
+
+    public int solicitarNovaMatricula() {
+        System.out.print("Nova matrícula: ");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextInt();
+    }
+
+    public String solicitarNovoCurso() {
+        System.out.print("Novo curso: ");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
+
+    public String solicitarNomeDisciplina() {
+        System.out.print("Nome da disciplina: ");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
+
+    public String solicitarCodigoDisciplina() {
+        System.out.print("Código da disciplina: ");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
     }
 
     public void encerrar() {model.detachObserver(this);}
