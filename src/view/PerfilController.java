@@ -45,8 +45,9 @@ public class PerfilController implements Observer {
             case 2:
                 this.view.exibirMsg("Novo login: ");
                 String login = sc.nextLine();
+                String loginAntigo = usuario.getLogin();
                 usuario.setLogin(login);
-                model.atualizaUsuario(usuario);
+                model.atualizaUsuario(usuario, loginAntigo);
                 view.verPerfil();
                 break;
             case 3:

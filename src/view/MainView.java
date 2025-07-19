@@ -19,6 +19,7 @@ public class MainView implements Observer {
             controller = new MainController();
             controller.init(model, this);
             model.attachObserver(this);
+            model.notifica();
             menuPrincipal();
         }
     }

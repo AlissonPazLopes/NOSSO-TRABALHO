@@ -12,7 +12,6 @@ public class Model {
 
     //private HashMap<String, Ped> peds = new HashMap<>();
     private ArrayList<Ped> peds = new ArrayList<>();
-    private HashMap<String, Ped> pedsSolicitados = new HashMap<>();
     private HashMap<String, Usuario> usuarios = new HashMap<>();
     private ArrayList<Observer> observers = new ArrayList<>();
 
@@ -54,6 +53,13 @@ public class Model {
 
     public void atualizaUsuario(Usuario usuario) {
         usuarioAutenticado = usuario;
+        notifica();
+    }
+
+    public void atualizaUsuario(Usuario usuario, String loginAntigo) {
+        usuarioAutenticado = usuario;
+        if (loginAntigo != null && !loginAntigo.equals(usuario.getLogin())) usuarios.remove(loginAntigo);
+        usuarios.put(usuario.getLogin(), usuario);
         notifica();
     }
 
@@ -106,13 +112,6 @@ public class Model {
             calendario.add(atividade);
         }
         return calendario;
-    }
-
-    public void addSolicitacaoPed(Ped ped) {
-        Professor professor = (Professor) usuarioAutenticado; //so pode ser usado por professores
-        if(professor.getDisciplina(ped.getDisciplina().getCodigo()) == null) return; //encerra se o professor e ped nao forem da mesma disciplina
-        pedsSolicitados.put(ped.getCodigo(), ped);
-        notifica();
     }
 
     public void addPed(Ped ped) {
