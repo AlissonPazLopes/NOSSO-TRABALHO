@@ -126,6 +126,12 @@ public class PerfilView implements Observer {
         return sc.nextLine();
     }
 
+    public String confirmarRemocaoDisciplina(String nomeDisciplina) {
+        System.out.print("Tem certeza que deseja remover a disciplina '" + nomeDisciplina + "'? (Isso irá remover todos os seus PEDs dessa disciplina) [S/N]: ");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine().trim().toUpperCase();
+    }
+
     public void encerrar() {model.detachObserver(this);}
 
     public void update() {}

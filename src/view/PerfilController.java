@@ -1,6 +1,7 @@
 package view;
 
 import model.*;
+import java.util.ArrayList;
 
 public class PerfilController implements Observer {
     private Model model;
@@ -95,13 +96,33 @@ public class PerfilController implements Observer {
             } else {
                 int indiceRemover = event - opcoesBase;
                 int c = 0;
+                Disciplina disciplinaRemover = null;
                 for (Disciplina disciplina : u.getDisciplinas().values()) {
                     if (c == indiceRemover) {
-                        u.removeDisciplina(disciplina);
-                        model.atualizaUsuario(u);
+                        disciplinaRemover = disciplina;
                         break;
                     }
                     c++;
+                }
+                if(disciplinaRemover != null) {
+                    String confirmacao = view.confirmarRemocaoDisciplina(disciplinaRemover.getNome());
+                    if(confirmacao.equalsIgnoreCase("S")) {
+                        u.removeDisciplina(disciplinaRemover);
+                        ArrayList<Ped> pedsParaRemover = new ArrayList<>();
+                        for(Ped ped : model.getPeds()) {
+                            if(ped.getProfessor().equals(u) && 
+                               ped.getDisciplina().getCodigo().equals(disciplinaRemover.getCodigo())) {
+                                pedsParaRemover.add(ped);
+                            }
+                        }
+                        for(Ped ped : pedsParaRemover) {
+                            model.removePed(ped);
+                        }
+                        model.atualizaUsuario(u);
+                        view.exibirMsg("Disciplina removida com sucesso!\n");
+                    } else {
+                        view.exibirMsg("Remoção cancelada.\n");
+                    }
                 }
             }
             view.verPerfil();
