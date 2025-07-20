@@ -19,15 +19,19 @@ public class EditarCalendarioController implements Observer{
     }
 
     public void handleEvent(int event, int chaveAdd) {
+        //sair
         if(event == 0){
             view.encerrar();
             model.detachObserver(this);
+        //adicionar
         } else if(event == chaveAdd){
             view.exibirMsg("Escolha a posicao que deseja adicionar: ");
             int posicao = view.scannerInt();
+            //posicao invalida
             if(posicao < 1 || posicao > chaveAdd){
-                view.exibirMsg("Digite uma posicao valida: ");
+                view.exibirMsg("Digite uma posicao valida.");
                 view.editarCalendario();
+            //posicao valida
             } else{
                 view.exibirMsg("Data[DD/MM]: ");
                 String data = view.scannerString();
@@ -36,33 +40,46 @@ public class EditarCalendarioController implements Observer{
                 view.exibirMsg("Carga Horaria: ");
                 int horas = view.scannerInt();
 
-                Atividade atividade = new Atividade(data, descricao, horas);
+                Atividade atividadeNova = new Atividade(data, descricao, horas);
 
-                ArrayList<Atividade> calendario = ped.getCalendario();
-                ArrayList<Atividade> pedsTemporariosCabeca = new ArrayList<>();
-                ArrayList<Atividade> pedsTemporariosCauda = new ArrayList<>();
-                //atividades antes do que vai ser adicionado
-                for(int i = 0; i < posicao; i++){
-                    pedsTemporariosCabeca.add(ped.getAtividade(i));
+                // monta calendário final
+                ArrayList<Atividade> oldCal = ped.getCalendario();
+                ArrayList<Atividade> novoCal = new ArrayList<>();
+
+                int idxInsercao = posicao - 1;
+                for (int i = 0; i < idxInsercao; i++) {
+                    novoCal.add(oldCal.get(i));
                 }
-                //atividades depois do que vai ser adicionado
-                for(int i = posicao; i < calendario.size(); i++){
-                    pedsTemporariosCauda.add(ped.getAtividade(i));
+                novoCal.add(atividadeNova);
+                for (int i = idxInsercao; i < oldCal.size(); i++) {
+                    novoCal.add(oldCal.get(i));
                 }
 
-                ArrayList<Atividade> calendarioFinal = new ArrayList<>();
-                for(Atividade atv: pedsTemporariosCabeca) calendarioFinal.add(atv);
-                calendarioFinal.add(atividade);
-                for(Atividade atv: pedsTemporariosCauda) calendarioFinal.add(atv);
-
-                ped.setCalendario(calendarioFinal);
+                ped.setCalendario(novoCal);
                 model.atualizaPed(ped);
+                view.editarCalendario();
+
+
+                ped.setCalendario(novoCal);
+                model.atualizaPed(ped);
+                view.editarCalendario();
             }
-        } else if(event > 0 && event < chaveAdd){
-            ped.getCalendario().remove(event);
-            model.atualizaPed(ped);
-        } else{
-            view.exibirMsg("Opção inválida.");
+        //remover
+        } else if (event >= 1 && event < chaveAdd) {
+            int idxRemover = event - 1;
+            ArrayList<Atividade> cal = ped.getCalendario();
+            if (idxRemover >= 0 && idxRemover < cal.size()) {
+                cal.remove(idxRemover);
+                ped.setCalendario(cal);
+                model.atualizaPed(ped);
+            } else {
+                view.exibirMsg("Índice fora do intervalo.\n");
+            }
+            view.editarCalendario();
+
+            // inválido
+        } else {
+            view.exibirMsg("Opção inválida.\n");
             view.editarCalendario();
         }
     }

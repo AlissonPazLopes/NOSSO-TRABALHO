@@ -193,10 +193,16 @@ public class Model {
         return peds;
     }
 
-    public void atualizaPed(Ped ped){
-        String codigo = ped.getCodigo();
-        peds.remove(codigo);
-        peds.add(ped);
+    public void atualizaPed(Ped pedAtualizado){
+        for (int i = 0; i < peds.size(); i++) {
+            if (peds.get(i).getCodigo().equals(pedAtualizado.getCodigo())) {
+                peds.set(i, pedAtualizado);
+                notifica();
+                return;
+            }
+        }
+        peds.add(pedAtualizado);
+        notifica();
     }
 
     /*

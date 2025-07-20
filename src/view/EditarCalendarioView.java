@@ -37,16 +37,14 @@ public class EditarCalendarioView implements Observer{
         }
 
         System.out.println(i + " - Adicionar atividade");
-        System.out.println("\nEscolha sair[0], remover uma atividade[numero da atividade] ou adicionar[" + i + "]: " );
+        System.out.print("\nEscolha sair[0], remover uma atividade[numero da atividade] ou adicionar[" + i + "]: " );
         int opcao = sc.nextInt();
         sc.nextLine();
         controller.handleEvent(opcao, i);
     }
 
     public void exibirMsg(String msg) {
-        System.out.println();
-        System.out.println(msg);
-        System.out.println();
+        System.out.print(msg);
     }
 
     public String scannerString(){
@@ -62,7 +60,10 @@ public class EditarCalendarioView implements Observer{
         return i;
     }
 
-    public void encerrar() {model.detachObserver(this);}
+    public void encerrar() {
+        model.detachObserver(this);
+        System.out.println("Encerrando edição de calendário.");
+    }
 
     public void update() {}
 }
