@@ -21,8 +21,15 @@ public class EditarCalendarioController implements Observer{
     public void handleEvent(int event, int chaveAdd) {
         //sair
         if(event == 0){
-            view.encerrar();
-            model.detachObserver(this);
+            int horasCriadas = 0;
+            for(Atividade atividade: ped.getCalendario()) horasCriadas += atividade.getCargaHoraria();
+            if(horasCriadas != ped.getCargaHoraria().getHoras()){
+                view.exibirMsg("\nA quantidade de horas criadas não corresponde à carga horária da disciplina.\n");
+                view.editarCalendario();
+            } else {
+                view.encerrar();
+                model.detachObserver(this);
+            }
         //adicionar
         } else if(event == chaveAdd){
             view.exibirMsg("Escolha a posicao que deseja adicionar: ");
