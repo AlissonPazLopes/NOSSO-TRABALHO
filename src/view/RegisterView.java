@@ -15,6 +15,7 @@ public class RegisterView implements Observer {
     private ArrayList<Disciplina> disciplinas = new ArrayList<>();
     private String tipoUsuario;
 
+    //inicializa a view com o model e controller
     public void init(Model model) {
         this.model = model;
         controller = new RegisterController();
@@ -23,6 +24,7 @@ public class RegisterView implements Observer {
         cadastrarUsuario();
     }
 
+    // Vai controlar o fluxo de cadastro dos usuários
     public void cadastrarUsuario() {
         Scanner sc = new Scanner(System.in);
         String[] opcoes = {"1 - Aluno", "2 - Professor"};
@@ -33,11 +35,13 @@ public class RegisterView implements Observer {
                            Cadastro
         ================================================
         """);
-
+        //vai exbiir o tipo de usuário
         System.out.println(opcoes[0]);
         System.out.println(opcoes[1]);
         System.out.print("\nEscolha o tipo de usuario: ");
         tipoUsuario = sc.nextLine();
+
+        //cadastro do aluno
         if(tipoUsuario.equals("1")) {
             String[] cursos = {
                 "CC - Ciencia da computacao",
@@ -74,15 +78,18 @@ public class RegisterView implements Observer {
             }
             
 
+            // Verifica se a matrícula já foi cadastrada
             if(model.getAlunoPorMatricula(matricula) != null) {
                 System.out.println("\nJá existe um aluno cadastrado com essa matricula!\n");
                 model.detachObserver(this);
                 return;
             }
 
+            //Cadastro do professor
         } else if(tipoUsuario.equals("2")) {
             String resposta;
             do {
+                // Pega o nome e o código de cada disciplina
                 System.out.print("Digite o nome da disciplina ministrada: ");
                 String disciplinaNome = sc.nextLine();
                 System.out.print("Digite o código da disciplina: ");
@@ -93,6 +100,7 @@ public class RegisterView implements Observer {
             } while(resposta.equals("s") || resposta.equals("sim"));
         }
 
+        //Se tipo de usuário for válido, ele vai continuar o cadastro
         if(tipoUsuario.equals("1") || tipoUsuario.equals("2")) {
             System.out.print("Digite seu nome: ");
             nome = sc.nextLine();
@@ -133,6 +141,7 @@ public class RegisterView implements Observer {
     }
 
 
+    //Getters para acessar os dados digitados
     public String getNome() {
         return nome;
     }

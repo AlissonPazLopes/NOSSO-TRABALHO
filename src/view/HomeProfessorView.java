@@ -7,6 +7,7 @@ public class HomeProfessorView implements Observer {
     private Model model;
     private HomeProfessorController controller;
 
+    //inicializa a view com o model e o controller
     public void init(Model model) {
         this.model = model;
         this.controller = new HomeProfessorController();
@@ -15,6 +16,7 @@ public class HomeProfessorView implements Observer {
         menuProfessor();
     }
 
+    //Vai exibir o menu do professor com as opções disponiveis do mesmo
     public void menuProfessor() {
         Scanner sc = new Scanner(System.in);
         String opcoes[] = {
@@ -41,6 +43,7 @@ public class HomeProfessorView implements Observer {
         controller.handleEvent(event);
     }
 
+    //Vai dar update quando tiver mudanças no model
     public void update() {
         
     }

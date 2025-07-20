@@ -8,7 +8,8 @@ public class LoginView implements Observer {
     private LoginController controller;
     private String login;
     private String senha;
-    
+
+    //inicializa a view com controller e o model
     public void init(Model model) {
         this.model = model;
         controller = new LoginController();
@@ -17,6 +18,7 @@ public class LoginView implements Observer {
         logarUsuario();
     }
 
+    //Vai coletar as credenciais do usuário, enviando para o controller
     public void logarUsuario() {
         Scanner sc = new Scanner(System.in);
         System.out.println();
@@ -34,14 +36,17 @@ public class LoginView implements Observer {
         model.detachObserver(this);
     }
 
+    //retorna o login
     public String getLogin() {
         return login;
     }
 
+    //retorna a senha
     public String getSenha() {
         return senha;
     }
-    
+
+    //Dá um update no model
     public void update() {
 
     }

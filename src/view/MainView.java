@@ -9,10 +9,12 @@ public class MainView implements Observer {
     private int totalUsuarios;
     private boolean finalizar = false;
 
+    //Vai sinalizar para encerrar o sistema
     public void finalizarSistema() {
         finalizar = true;
     }
 
+    //Inicializa o sistema principal
     public void init(Model model) {
         if(model != null) {
             this.model = model;
@@ -24,6 +26,7 @@ public class MainView implements Observer {
         }
     }
 
+    //Exibe o menu principal com as opções
     public void menuPrincipal() {
         Scanner sc = new Scanner(System.in);
         String opcoes[] = {"1 - Login", "2 - Registrar-se", "3 - Sair"};
@@ -46,5 +49,6 @@ public class MainView implements Observer {
         } while(!finalizar);
     }
 
+    //Atualiza o numero de usuarios registrados
     public void update() {totalUsuarios = model.getTotalUsuarios();}
 }

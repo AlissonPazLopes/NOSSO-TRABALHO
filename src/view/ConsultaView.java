@@ -9,6 +9,7 @@ public class ConsultaView implements Observer {
     private String busca;
     private ArrayList<Ped> ultimaBusca;
 
+    //inicializa a view e o controller
     public void init(Model model) {
         this.model = model;
         this.controller = new ConsultaController();
@@ -21,6 +22,7 @@ public class ConsultaView implements Observer {
         Scanner sc = new Scanner(System.in);
         boolean continuar = true;
         while(continuar) {
+            //Exibe o cabeçalho
              System.out.println("""
             =================================================
             ||              Consulta de Planos             ||
@@ -29,7 +31,7 @@ public class ConsultaView implements Observer {
             System.out.println("\nDigite o nome da disciplina para buscar (ou digite 0 para voltar ao menu anterior): ");
             busca = sc.nextLine().trim().toLowerCase();
 
-            if(busca.equals("0")) {
+            if(busca.equals("0")) { //Caso o usuário queira voltar
                 controller.handleEvent("VOLTAR");
                 continuar = false;
                 break;
@@ -37,7 +39,7 @@ public class ConsultaView implements Observer {
 
             controller.handleEvent("OK");
         }
-        model.detachObserver(this);
+        model.detachObserver(this); //Remove-se como observer ao encerrar
     }
 
     public String getBusca() {
@@ -63,6 +65,7 @@ public class ConsultaView implements Observer {
             System.out.println("Planos de ensino encontrados:");
             int i = 1;
             for(Ped ped : encontrados) {
+                //Exibe a lista resumida com os planos encontrados
                 System.out.printf("%d - Disciplina: %s | Curso: %s | Professor: %s\n", 
                     i++, ped.getDisciplina().getNome(), ped.getCurso(), ped.getProfessor().getNome());
             }
@@ -76,6 +79,7 @@ public class ConsultaView implements Observer {
     }
 
     public void exibirDetalhes(Ped ped) {
+        //Exibir todos os detalhes do plano de ensino
         System.out.println("===== Detalhes do Plano de Ensino =====");
         System.out.println("\nDisciplina: " + ped.getDisciplina().getNome());
         System.out.println("Código: " + ped.getDisciplina().getCodigo());

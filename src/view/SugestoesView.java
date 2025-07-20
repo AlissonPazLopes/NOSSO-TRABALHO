@@ -7,6 +7,7 @@ public class SugestoesView implements Observer {
     private Model model;
     private SugestoesController controller;
 
+    //Vai inicializar a view e o controlador
     public void init(Model model) {
         this.model = model;
         this.controller = new SugestoesController();
@@ -15,6 +16,7 @@ public class SugestoesView implements Observer {
         menuSugestoes();
     }
 
+    //Vai mostrar o menu com as sugestões com base no curso
     public void menuSugestoes() {
         Aluno aluno = (Aluno) model.getUsuarioAutenticado();
         String cursoAluno = aluno.getCurso();
@@ -27,7 +29,7 @@ public class SugestoesView implements Observer {
             =================================================
             """);
 
-            
+            // Vai filtar os planos do mesmo curso
             for(Ped ped : model.getPeds()) {
                 if(ped.getCurso().equalsIgnoreCase(cursoAluno)) {
                     sugestoes.add(ped);
@@ -42,6 +44,8 @@ public class SugestoesView implements Observer {
                     System.out.printf("%d - Disciplina: %s | Curso: %s | Professor: %s\n",
                         i++, ped.getDisciplina().getNome(), ped.getCurso(), ped.getProfessor().getNome());
                 }
+
+                //Vai solicitar a escolha
                 System.out.println("Escolha o número do Plano de Ensino para ver detalhes (ou digite 0 para voltar): ");
                 int escolha = sc.nextInt();
                 if(escolha <= 0 || escolha > sugestoes.size()) {
@@ -56,6 +60,7 @@ public class SugestoesView implements Observer {
             
     }
 
+    //Vai mostrar os detalhes do plano de ensino
     public void exibirDetalhes(Ped ped) {
         System.out.println("===== Detalhes do Plano de Ensino =====");
         System.out.println("\nDisciplina: " + ped.getDisciplina().getNome());
@@ -82,6 +87,7 @@ public class SugestoesView implements Observer {
         System.out.println("Bibliografia: " + ped.getBibliografia());    
     }
 
+    //Opções após os detalhes do plano serem mostrados
     public void opcoesAposDetalhes() {
     Scanner sc = new Scanner(System.in);
     System.out.println("\nO que deseja fazer?");

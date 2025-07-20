@@ -8,6 +8,7 @@ public class PerfilView implements Observer {
     private PerfilController controller;
     private Usuario usuarioAutenticado;
 
+    //inicializa a view com o model e o controller para exibir o perfil
     public void init(Model model) {
         this.model = model;
         controller = new PerfilController();
@@ -17,16 +18,21 @@ public class PerfilView implements Observer {
         verPerfil();
     }
 
+    //exibe os dados do perfil com as opções de alteração
     public void verPerfil() {
         Scanner sc = new Scanner(System.in);
         ArrayList<String> opcoes = new ArrayList<>();
+        //Exibe opções para o Aluno
         opcoes.add("0 - Sair");
         opcoes.add("1 - Nome");
         opcoes.add("2 - Login");
         opcoes.add("3 - Senha");
+
+        //Adiciona opções para o Aluno
         if(usuarioAutenticado instanceof Aluno) {opcoes.add("4 - Matricula");
                                                  opcoes.add("5 - Curso");}
 
+        //Adiciona opções para o professor
         else{
             Professor professor = (Professor) usuarioAutenticado;
             int proximoNumeroOpcao = opcoes.size();
@@ -38,6 +44,7 @@ public class PerfilView implements Observer {
             opcoes.add((proximoNumeroOpcao + index) + " - Adicionar disciplina");
         }
 
+        //Vai exibir o menu de opções e o perfil atual
         System.out.println("""
         ================================================
                            Perfil
@@ -69,8 +76,8 @@ public class PerfilView implements Observer {
         System.out.print("\nOpcao: ");
         int event = sc.nextInt();
 
-        controller.handleEvent(event);
-        model.detachObserver(this);
+        controller.handleEvent(event); //Envia a escolha para o controller
+        model.detachObserver(this); //Remove a view como observer após a ação
     }
 
     public void exibirMsg(String msg) {
