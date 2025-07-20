@@ -43,7 +43,25 @@ public class PerfilView implements Observer {
                            Perfil
         ================================================
         """);
-        System.out.println(usuarioAutenticado);
+
+        System.out.println("Nome: " + usuarioAutenticado.getNome());
+        System.out.println("Login: " + usuarioAutenticado.getLogin());
+
+        String senhaOculta = "*".repeat(usuarioAutenticado.getSenha().length());
+        System.out.println("Senha: " + senhaOculta);
+
+        if(usuarioAutenticado instanceof Aluno) {
+            Aluno aluno = (Aluno) usuarioAutenticado;
+            System.out.println("Matrícula: " + aluno.getMatricula());
+            System.out.println("Curso: " + aluno.getCurso());
+        } else if(usuarioAutenticado instanceof Professor) {
+            Professor professor = (Professor) usuarioAutenticado;
+            System.out.println("Disciplinas:");
+            for(Disciplina d : professor.getDisciplinas().values()) {
+                System.out.println("- " + d.getNome() + " (" + d.getCodigo() + ")");
+            }
+        }
+
         System.out.println("\nEscolha: [Sair / Mudar um dado]\n");
 
         for(String opcao : opcoes) {System.out.println(opcao);}
@@ -68,6 +86,12 @@ public class PerfilView implements Observer {
 
     public String solicitarNovoLogin() {
         System.out.print("Novo login: ");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
+
+    public String solicitarSenhaAtual() {
+        System.out.print("Digite sua senha atual: ");
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
     }

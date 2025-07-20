@@ -2,8 +2,6 @@ package view;
 
 import model.*;
 
-import java.util.Scanner;
-
 public class PerfilController implements Observer {
     private Model model;
     private PerfilView view;
@@ -49,8 +47,14 @@ public class PerfilController implements Observer {
                 view.verPerfil();
                 break;
             case 3:
-                String senha = view.solicitarNovaSenha();
-                usuario.setSenha(senha);
+                String senhaAtual = view.solicitarSenhaAtual();
+                if(!usuario.getSenha().equals(senhaAtual)) {
+                    view.exibirMsg("\nSenha atual incorreta!\n");
+                    view.verPerfil();
+                    return;
+                }
+                String novaSenha = view.solicitarNovaSenha();
+                usuario.setSenha(novaSenha);
                 model.atualizaUsuario(usuario);
                 view.verPerfil();
                 break;
