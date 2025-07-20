@@ -1,8 +1,6 @@
 package view;
 
 import model.Model;
-import model.Aluno;
-import model.Professor;
 
 public class RegisterController implements Observer {
     private Model model;

@@ -13,13 +13,10 @@ public class Atividade {
         setCargaHoraria(cargaHoraria);
     }
 
-
     public void setData(String data) {
         this.data = data;
     }
-
     public void setDescricao(String descricao) {this.descricao = descricao;}
-
     public void setCargaHoraria(int cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
     }

@@ -14,6 +14,7 @@ public class Professor extends Usuario {
 
     public void setDisciplina(Disciplina disciplina) {disciplinas.put(disciplina.getCodigo(), disciplina);}
     public void setDisciplina(String nome, String codigo) {setDisciplina(new Disciplina(nome, codigo));}
+
     public void removeDisciplina(Disciplina disciplina) {disciplinas.remove(disciplina.getCodigo());}
 
     public Disciplina getDisciplina(String codigo) {return disciplinas.get(codigo);}

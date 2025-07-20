@@ -2,7 +2,7 @@ package model;
 
 public class Aluno extends Usuario {
     private int matricula;
-    private String curso; // Decidir sobre esse atributo depois (a ideia era uma tela de sugestões de planos de ensino após login no sistema, com base no curso do aluno)
+    private String curso;
 
     public Aluno(String nome, String login, String senha, int matricula, String curso) {
         super(nome, login, senha);
@@ -20,7 +20,6 @@ public class Aluno extends Usuario {
         return matricula;
     }
 
-    //melhorar setCurso caso o atributo seja mantido no projeto
     public void setCurso(String curso) {
         if(curso != null) {
             this.curso = curso;
@@ -32,7 +31,7 @@ public class Aluno extends Usuario {
     }
 
     public String toString() {
-        String perfil = "[1] - Nome: " + getNome() +
+        String perfil = "  [1] - Nome: " + getNome() +
                         "\n[2] - Login: " + getLogin() +
                         "\n[3] - Senha: " + getSenha() +
                         "\n[4] - Matricula: " + getMatricula() +

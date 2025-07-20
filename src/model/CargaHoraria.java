@@ -6,6 +6,7 @@ public enum CargaHoraria {
     HORAS_96(96),
     HORAS_160(160);
 
+    //guarda um valor inteiro da quantidade de horas
     private int horas;
 
     CargaHoraria(int horas) {

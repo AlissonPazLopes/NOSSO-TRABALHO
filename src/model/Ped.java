@@ -19,6 +19,7 @@ public class Ped {
     private String sistemaAvaliacao;
     private String bibliografia;
 
+    //construtor
     public Ped(
         String codigo,
         Professor professor,
@@ -54,6 +55,10 @@ public class Ped {
             setBibliografia(bibliografia);
     }
 
+    /*
+     * setters e getters
+     */
+
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
@@ -64,17 +69,13 @@ public class Ped {
         if(professor != null) this.professor = professor;
     }
 
-    public Professor getProfessor() {
-        return professor;
-    }
+    public Professor getProfessor() {return professor;}
 
     public void setCurso(String curso) {
         if(curso != null) this.curso = curso;
     }
 
-    public String getCurso() {
-        return curso;
-    }
+    public String getCurso() {return curso;}
 
     public void setDisciplina(Disciplina disciplina) {
         if(disciplina.getNome() != null && disciplina.getCodigo() != null) this.disciplina = disciplina;
@@ -88,9 +89,7 @@ public class Ped {
         }
     }
 
-    public CaraterDisciplina getCarater() {
-        return carater;
-    }
+    public CaraterDisciplina getCarater() {return carater;}
 
     public void setCargaHoraria(CargaHoraria cargaHoraria) {
         if(cargaHoraria != null) {
@@ -98,9 +97,7 @@ public class Ped {
         }
     }
 
-    public CargaHoraria getCargaHoraria() {
-        return cargaHoraria;
-    }
+    public CargaHoraria getCargaHoraria() {return cargaHoraria;}
 
     public void setRequisitos(String requisitos) {
         if(requisitos == null) {
@@ -110,9 +107,7 @@ public class Ped {
         }
     }
 
-    public String getRequisitos() {
-        return requisitos;
-    }
+    public String getRequisitos() {return requisitos;}
 
     public void setJustificativa(String justificativa) {
         if(justificativa != null) {
@@ -120,9 +115,7 @@ public class Ped {
         }
     }
 
-    public String getJustificativa() {
-        return justificativa;
-    }
+    public String getJustificativa() {return justificativa;}
 
     public void setEmenta(String ementa) {
         if(ementa != null) {
@@ -130,15 +123,7 @@ public class Ped {
         }
     }
 
-    public String getEmenta() {
-        return ementa;
-    }
-
-    public void setObjetivos(String objetivos) {
-        if(objetivos != null) {
-            this.objetivos = objetivos;
-        }
-    }
+    public String getEmenta() {return ementa;}
 
     public void setCalendario(ArrayList<Atividade> calendario){
         if(calendario != null) {
@@ -148,9 +133,13 @@ public class Ped {
 
     public ArrayList<Atividade> getCalendario() {return calendario;}
 
-    public String getObjetivos() {
-        return objetivos;
+    public void setObjetivos(String objetivos) {
+        if(objetivos != null) {
+            this.objetivos = objetivos;
+        }
     }
+
+    public String getObjetivos() {return objetivos;}
 
     public void setMetodologia(String metodologia) {
         if(metodologia != null) {
@@ -158,9 +147,7 @@ public class Ped {
         }
     }
 
-    public String getMetodologia() {
-        return metodologia;
-    }
+    public String getMetodologia() {return metodologia;}
 
     public void setAtividadesDiscentes(String atividadesDiscentes) {
         if(atividadesDiscentes != null) {
@@ -168,9 +155,7 @@ public class Ped {
         }
     }
 
-    public String getAtividadesDiscentes() {
-        return atividadesDiscentes;
-    }
+    public String getAtividadesDiscentes() {return atividadesDiscentes;}
 
     public void setSistemaAvaliacao(String sistemaAvaliacao) {
         if(sistemaAvaliacao != null) {
@@ -178,9 +163,7 @@ public class Ped {
         }
     }
 
-    public String getSistemaAvaliacao() {
-        return sistemaAvaliacao;
-    }
+    public String getSistemaAvaliacao() {return sistemaAvaliacao;}
 
     public void setBibliografia(String bibliografia) {
         if(bibliografia != null) {
@@ -188,13 +171,6 @@ public class Ped {
         }
     }
 
-    public String getBibliografia() {
-        return bibliografia;
-    }
-
-    public Atividade getAtividade(int posicao) {
-        return calendario.get(posicao);
-    }
-
+    public String getBibliografia() {return bibliografia;}
     
 }

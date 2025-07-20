@@ -42,7 +42,7 @@ public class PlanosCriadosController implements Observer {
                         handleEvent("VOLTAR");
                     }
                 } else if(event.startsWith("EDITAR:")) {
-                    String codigoPed = event.split(":")[1].trim();              // <<< trim() aqui
+                    String codigoPed = event.split(":")[1].trim();
                     Ped pedEscolhido = model.getPedPorCodigo(codigoPed);
                     if (pedEscolhido == null) {
                         view.exibirMsg("Erro: não encontrei o plano com código “" + codigoPed + "”.");
