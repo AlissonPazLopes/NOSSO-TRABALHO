@@ -1,10 +1,10 @@
 package view;
 
-import java.util.Objects;
+
 import java.util.Scanner;
 import model.CaraterDisciplina;
 import model.CargaHoraria;
-import model.Model;
+import model.*;
 import model.Ped;
 
 public class EditarPlanoView implements Observer {
@@ -109,7 +109,7 @@ public class EditarPlanoView implements Observer {
 
 
             do {
-                System.out.println("Carga horária atual: " + cargaHoraria.getHoras());
+                System.out.println("Carga horária atual: " + cargaHoraria.getHoras() + " horas");
                 System.out.print("Nova carga horária (ENTER para manter): ");
                 String cargaOpcao = sc.nextLine();
                 if(cargaOpcao == null || cargaOpcao == ""){
@@ -178,11 +178,17 @@ public class EditarPlanoView implements Observer {
 
             System.out.println("\nResumo das alterações feitas:");
             System.out.println("Caráter: " + carater);
-            System.out.println("Carga Horária: " + cargaHoraria);
+            System.out.println("Carga Horária: " + cargaHoraria.getHoras() + " horas");
             System.out.println("Requisitos: " + requisitos);
             System.out.println("Justificativa: " + justificativa);
             System.out.println("Ementa: " + ementa);
             System.out.println("Objetivos: " + objetivos);
+            System.out.println("\n====== Calendário de Atividades ======");
+            System.out.println();
+            for(Atividade atividade: ped.getCalendario()){
+                System.out.println(atividade.getData() + " - " + atividade.getDescricao() + " - " + atividade.getCargaHoraria());
+            }
+            System.out.println();
             System.out.println("Metodologia: " + metodologia);
             System.out.println("Atividades Discentes: " + atividadesDiscentes);
             System.out.println("Sistema de Avaliação: " + sistemaAvaliacao);

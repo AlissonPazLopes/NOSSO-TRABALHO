@@ -22,13 +22,16 @@ public class EditarCalendarioController implements Observer{
         //sair
         if(event == 0){
             int horasCriadas = 0;
+            //checa a quantidade de horas criadas pelo professor
             for(Atividade atividade: ped.getCalendario()) horasCriadas += atividade.getCargaHoraria();
             if(horasCriadas != ped.getCargaHoraria().getHoras()){
                 view.exibirMsg("\nA quantidade de horas criadas não corresponde à carga horária da disciplina.\n");
                 view.editarCalendario();
+                return;
             } else {
                 view.encerrar();
                 model.detachObserver(this);
+                return;
             }
         //adicionar
         } else if(event == chaveAdd){
@@ -38,6 +41,7 @@ public class EditarCalendarioController implements Observer{
             if(posicao < 1 || posicao > chaveAdd){
                 view.exibirMsg("Digite uma posicao valida.");
                 view.editarCalendario();
+                return;
             //posicao valida
             } else{
                 view.exibirMsg("Data[DD/MM]: ");
@@ -65,11 +69,7 @@ public class EditarCalendarioController implements Observer{
                 ped.setCalendario(novoCal);
                 model.atualizaPed(ped);
                 view.editarCalendario();
-
-
-                ped.setCalendario(novoCal);
-                model.atualizaPed(ped);
-                view.editarCalendario();
+                return;
             }
         //remover
         } else if (event >= 1 && event < chaveAdd) {
@@ -83,11 +83,13 @@ public class EditarCalendarioController implements Observer{
                 view.exibirMsg("Índice fora do intervalo.\n");
             }
             view.editarCalendario();
+            return;
 
             // inválido
         } else {
             view.exibirMsg("Opção inválida.\n");
             view.editarCalendario();
+            return;
         }
     }
 

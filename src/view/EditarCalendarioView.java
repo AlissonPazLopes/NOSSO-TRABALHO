@@ -62,7 +62,7 @@ public class EditarCalendarioView implements Observer{
 
     public void encerrar() {
         model.detachObserver(this);
-        System.out.println("Encerrando edição de calendário.");
+        System.out.println("\nEncerrando edição de calendário.\n");
     }
 
     public void update() {}
