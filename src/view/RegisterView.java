@@ -53,8 +53,26 @@ public class RegisterView implements Observer {
             System.out.print("\nEscolha a sigla do seu curso: ");
             curso = sc.nextLine().toUpperCase();
 
-            System.out.print("Digite sua matricula: ");
-            matricula = sc.nextLine();
+            while(true) {
+                System.out.print("Digite sua matricula: ");
+                matricula = sc.nextLine();
+                try {
+                    int mat = Integer.parseInt(matricula);
+                    if(mat >= 100000 && mat <= 999999) {
+                        if(model.getAlunoPorMatricula(matricula) != null) {
+                            System.out.println("\nJá existe um aluno cadastrado com essa matrícula!\n");
+                            model.detachObserver(this);
+                            return;
+                        }
+                        break; // Se a matrícula for válida, sai do loop
+                    } else {
+                        System.out.println("A matrícula deve ser um número entre 100000 e 999999.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Digite apenas números para a matrícula.");
+                }
+            }
+            
 
             if(model.getAlunoPorMatricula(matricula) != null) {
                 System.out.println("\nJá existe um aluno cadastrado com essa matricula!\n");
