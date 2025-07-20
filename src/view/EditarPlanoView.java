@@ -75,11 +75,11 @@ public class EditarPlanoView implements Observer {
                     continuar = false;
                 } else if(caraterOpcao.equals("1")){
                     carater = CaraterDisciplina.OBRIGATORIA;
-                    System.out.println("O Caráter Atual é: OPTAVATIVA");
+                    System.out.println("O Caráter Atual é: OBRIGATORIA");
                     continuar = false;
                 } else if (caraterOpcao.equals("2")) {
                     carater = CaraterDisciplina.OPTATIVA;
-                    System.out.println("O Caráter Atual é: OPTAVATIVA");
+                    System.out.println("O Caráter Atual é: OPTATIVA");
                     continuar = false;
                 }else {
                     System.out.println("Opção Inválida, Tente Novamente.");
@@ -105,19 +105,19 @@ public class EditarPlanoView implements Observer {
                     continuar = false;
                 } else if (cargaOpcao.equals("1")){
                     cargaHoraria = CargaHoraria.HORAS_32;
-                    System.out.println("Carga  atual horária de: 32 horas" );
+                    System.out.println("Carga horária atual de: 32 horas" );
                     continuar = false;
                 } else if (cargaOpcao.equals("2")) {
                     cargaHoraria = CargaHoraria.HORAS_64;
-                    System.out.println("Carga atual horária de: 64 horas" );
+                    System.out.println("Carga horária atual de: 64 horas" );
                     continuar = false;
                 } else if (cargaOpcao.equals("3")) {
                     cargaHoraria = CargaHoraria.HORAS_96;
-                    System.out.println("Carga  atual horária de: 96 horas" );
+                    System.out.println("Carga horária atual de: 96 horas" );
                     continuar = false;
                 } else if (cargaOpcao.equals("4")) {
                     cargaHoraria = CargaHoraria.HORAS_160;
-                    System.out.println("Carga  atual horária de: 160 horas" );
+                    System.out.println("Carga horária atual de: 160 horas" );
                     continuar = false;
                 } else {
                     System.out.println("Opção Inválida, Tente Novamente.");
@@ -142,9 +142,10 @@ public class EditarPlanoView implements Observer {
 
             System.out.print("Editar calendário[S/N]: ");
             String novoCalendario = sc.nextLine().toUpperCase();
+
+            //corrigir isso
             if(novoCalendario.equals("S")){
-                EditarCalendarioView view= new EditarCalendarioView();
-                view.init(model, ped);
+                controller.handleEvent("EDITAR_CALENDARIO");
             }
 
             System.out.print("Metodologia [" + metodologia + "]: ");

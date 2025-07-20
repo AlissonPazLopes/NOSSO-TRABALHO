@@ -16,19 +16,25 @@ public class EditarPlanoController implements Observer {
     }
 
     public void handleEvent(String event) {
-        if("SALVAR".equals(event)) {
-            ped.setCarater(view.getCarater());
-            ped.setCargaHoraria(view.getCargaHoraria());
-            ped.setRequisitos(view.getRequisitos());
-            ped.setJustificativa(view.getJustificativa());
-            ped.setEmenta(view.getEmenta());
-            ped.setObjetivos(view.getObjetivos());
-            ped.setMetodologia(view.getMetodologia());
-            ped.setAtividadesDiscentes(view.getAtividadesDiscentes());
-            ped.setSistemaAvaliacao(view.getSistemaAvaliacao());
-            ped.setBibliografia(view.getBibliografia());
-            view.exibirMsg("Plano atualizado com sucesso!");
-            voltarParaPlanosCriados();
+        switch(event) {
+            case "EDITAR_CALENDARIO":
+                EditarCalendarioView viewC = new EditarCalendarioView();
+                viewC.init(model, ped);
+                break;
+            case "SALVAR":
+                ped.setCarater(view.getCarater());
+                ped.setCargaHoraria(view.getCargaHoraria());
+                ped.setRequisitos(view.getRequisitos());
+                ped.setJustificativa(view.getJustificativa());
+                ped.setEmenta(view.getEmenta());
+                ped.setObjetivos(view.getObjetivos());
+                ped.setMetodologia(view.getMetodologia());
+                ped.setAtividadesDiscentes(view.getAtividadesDiscentes());
+                ped.setSistemaAvaliacao(view.getSistemaAvaliacao());
+                ped.setBibliografia(view.getBibliografia());
+                view.exibirMsg("Plano atualizado com sucesso!");
+                voltarParaPlanosCriados();
+                break;
         }
     }
 

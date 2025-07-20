@@ -22,7 +22,7 @@ public class Main {
         Model.getInstancia().cadastrarPed(
                 "RUS123",
                 felipe,
-                "Ciência da Computação",
+                "CC",
                 "Algebra Linear",
                 CaraterDisciplina.OBRIGATORIA,
                 CargaHoraria.HORAS_32,
