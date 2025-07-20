@@ -3,6 +3,7 @@ package view;
 import model.Model;
 import model.Ped;
 
+
 public class EditarPlanoController implements Observer {
     private Model model;
     private EditarPlanoView view;

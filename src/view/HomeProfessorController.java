@@ -2,10 +2,20 @@ package view;
 
 import model.Model;
 
+
+// Esse é o controller para a tela inicial do Professor
+// ela gerencia as opções do menu principal do professor, como consultar e criar planos
+//  ou acessar o perfil ou fazer  o logout
+
+
+
+
 public class HomeProfessorController implements Observer {
     private Model model;
     private HomeProfessorView view;
 
+
+    //inicializa
     public void init(Model model, HomeProfessorView view) {
         if(model != null && view != null) {
             this.model = model;
@@ -14,6 +24,8 @@ public class HomeProfessorController implements Observer {
         }
     }
 
+    // trata os eventos do professor
+    //representa as opções do professor
     public void handleEvent(String event) {
         switch(event) {
             case "1":

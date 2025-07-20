@@ -3,6 +3,15 @@ package view;
 import model.*;
 import java.util.ArrayList;
 
+
+// esse controller vai para a tela de perfil a PerfilView
+// que lida com a visualização e principalmente
+// a edição dos dados do usuário autenticado que é o Aluno ou o Professor
+
+
+
+
+
 public class PerfilController implements Observer {
     private Model model;
     private PerfilView view;
@@ -18,6 +27,7 @@ public class PerfilController implements Observer {
     }
 
     public void handleEvent(int event) {
+        // Define o número de opções base para diferenciar Aluno e o  Professor
         int opcoesBase = (usuario instanceof Aluno) ? 6 : 4;
         switch(event) {
             case 0:
@@ -84,19 +94,22 @@ public class PerfilController implements Observer {
                 }
                 break;
         }
-
+        // basicamente esse trecho específica para Professor (Adicionar ou Remover Disciplina.
         if(usuario instanceof Professor && event >= opcoesBase) {
             Professor u = (Professor) usuario;
             int indiceAdicionar = opcoesBase + u.getTotalDisciplinas();
+            // Adicionar uma nova disciplina
             if(event == indiceAdicionar) {
                 String nome = view.solicitarNomeDisciplina();
                 String codigo = view.solicitarCodigoDisciplina();
                 u.setDisciplina(nome, codigo);
                 model.atualizaUsuario(u);
             } else {
+                //remover a disciplina existente
                 int indiceRemover = event - opcoesBase;
                 int c = 0;
                 Disciplina disciplinaRemover = null;
+                // para encontrar a disciplina a ser removida com base no índice da opção
                 for (Disciplina disciplina : u.getDisciplinas().values()) {
                     if (c == indiceRemover) {
                         disciplinaRemover = disciplina;
@@ -108,6 +121,8 @@ public class PerfilController implements Observer {
                     String confirmacao = view.confirmarRemocaoDisciplina(disciplinaRemover.getNome());
                     if(confirmacao.equalsIgnoreCase("S")) {
                         u.removeDisciplina(disciplinaRemover);
+
+                        //aqui remove os PEDs associados à disciplina removida
                         ArrayList<Ped> pedsParaRemover = new ArrayList<>();
                         for(Ped ped : model.getPeds()) {
                             if(ped.getProfessor().equals(u) && 
@@ -125,7 +140,7 @@ public class PerfilController implements Observer {
                     }
                 }
             }
-            view.verPerfil();
+            view.verPerfil(); // recarrega a tela de perfil no final da operação
         }
 
     }

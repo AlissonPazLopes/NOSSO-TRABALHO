@@ -2,6 +2,12 @@ package view;
 
 import model.Model;
 
+// aqui
+//  vai gerenciar as opções do menu principal do aluno, como  o consultar planos e  ver sugestões
+//  ou  acessar o perfil ou fazer  o logout.
+
+
+
 public class HomeAlunoController implements Observer {
     private Model model;
     private HomeAlunoView view;
@@ -14,6 +20,9 @@ public class HomeAlunoController implements Observer {
         }
     }
 
+
+
+    // aqui é onde representa as opções do aluno
     public void handleEvent(String event) {
         switch(event) {
             case "1":
@@ -34,7 +43,7 @@ public class HomeAlunoController implements Observer {
             case "4":
                 view.exibirMsg("Realizando Logout...");
                 model.deslogarUsuario();
-                model.detachObserver(this);
+                model.detachObserver(this);//desregistra ao fazer o logout
                 break;
         }
     }

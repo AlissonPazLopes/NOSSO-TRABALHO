@@ -22,6 +22,9 @@ public class RegisterController implements Observer {
                 String senha = view.getSenha();
                 String tipoUsuario = view.getTipoUsuario();
 
+
+                //cria o tipo de usuario
+                // professor ou aluno
                 if(tipoUsuario.equals("1")) {
                     String curso = view.getCurso();
                     String matricula = view.getMatricula();
@@ -29,12 +32,13 @@ public class RegisterController implements Observer {
                 } else if(tipoUsuario.equals("2")) {
                     model.setUsuario(nome, login, senha, view.getDisciplinas());
                 }
+                //desregistra o observer
                 model.detachObserver(this);
                 break;
         }
     }
 
-
+    //
     public void update() {
 // não sei fazer o que tem aqui ainda!
     }
