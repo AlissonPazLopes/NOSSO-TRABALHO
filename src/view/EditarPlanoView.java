@@ -47,6 +47,18 @@ public class EditarPlanoView implements Observer {
     public void menuEditarPlano() {
         Scanner sc = new Scanner(System.in);
         String resposta;
+
+        CaraterDisciplina caraterOriginal = carater;
+        CargaHoraria cargaHorariaOriginal = cargaHoraria;
+        String requisitosOriginal = requisitos;
+        String justificativaOriginal = justificativa;
+        String ementaOriginal = ementa;
+        String objetivosOriginal = objetivos;
+        String metodologiaOriginal = metodologia;
+        String atividadesDiscentesOriginal = atividadesDiscentes;
+        String sistemaAvaliacaoOriginal = sistemaAvaliacao;
+        String bibliografiaOriginal = bibliografia;
+
         String[] tiposCarater = {"1 - Obrigatória", "2 - Optativa"};
         String[] cargas = {" 1 - 32 horas", " 2 - 64 horas", " 3 - 96 horas", " 4 - 160 horas"};
 
@@ -178,9 +190,27 @@ public class EditarPlanoView implements Observer {
 
             System.out.print("\nConfirmar alterações? (S/N): ");
             resposta = sc.nextLine().trim().toUpperCase();
+
+            // Restaura os valores originais
+            if(resposta.equals("N")) {
+                carater = caraterOriginal;
+                cargaHoraria = cargaHorariaOriginal;
+                requisitos = requisitosOriginal;
+                justificativa = justificativaOriginal;
+                ementa = ementaOriginal;
+                objetivos = objetivosOriginal;
+                metodologia = metodologiaOriginal;
+                atividadesDiscentes = atividadesDiscentesOriginal;
+                sistemaAvaliacao = sistemaAvaliacaoOriginal;
+                bibliografia = bibliografiaOriginal;
+                controller.handleEvent("CANCELAR");
+                break;
+            }   
         } while(resposta.equals("N"));
 
-        controller.handleEvent("SALVAR");
+        if(resposta.equals("S")) {
+            controller.handleEvent("SALVAR");
+        }
         model.detachObserver(this);
     }
 

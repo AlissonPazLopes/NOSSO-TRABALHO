@@ -35,6 +35,10 @@ public class EditarPlanoController implements Observer {
                 view.exibirMsg("Plano atualizado com sucesso!");
                 voltarParaPlanosCriados();
                 break;
+            case "CANCELAR":
+                view.exibirMsg("Alterações canceladas.");
+                voltarParaPlanosCriados();
+                break;
         }
     }
 
